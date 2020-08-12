@@ -1,6 +1,1 @@
-<?php
-
-header("Location: main/timeline.php");
-exit;
-
-?>
+<?php header('Location: main/timeline.php') ?>
