@@ -9,9 +9,9 @@
     
     function __construct() {
 
-      $dsn = 'mysql:dbname=tb220145db;host=localhost';
-      $user = 'tb-220145';
-      $password = 'YXAzZ7AChH';
+      $dsn = 'mysql:dbname=heroku_562044c1e47cad0;host=us-cdbr-east-02.cleardb.com';
+      $user = 'b998db552f4d3b';
+      $password = 'd77d3197';
 
       $this->pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
