@@ -6,17 +6,20 @@
 
     // Google Places APIからplace idを取得
 
-    $origin = 'ChIJUYpGCSCoAWARh1AwQZSfJH0';
-    $destination = 'ChIJUYpGCSCoAWARh1AwQZSfJH0';
-    // $waypoints = ['清水寺', '金閣寺', '嵐山'];
+    // $origin = 'ChIJUYpGCSCoAWARh1AwQZSfJH0';
+    // $destination = 'ChIJUYpGCSCoAWARh1AwQZSfJH0';
+    // $origin = escape($origin);  // databaseクラスをインスタンス化しないと使えない
+    // $destination = escape($destination);
     
     $url_dir = 'https://maps.googleapis.com/maps/api/directions/json?';
     $key_place = 'AIzaSyBNU1cg0kV0Xh28O4ph5lDaq4sCJeK3Riw';  // 環境変数やアプリケーションのソースツリー外部に保存
     $key_dir = 'AIzaSyAGdOE2XBCbd3HLJwjTspxkMWT5AFQ1vYM';
 
-    $url_dir .= "key=$key_dir&origin=place_id:$origin&destination=place_id:$destination&waypoints=optimize:true|";
+    $url_dir .= "key=$key_dir";
 
     foreach ($waypoints as $index => $waypoint) {
+
+      // $waypoint = escape($waypoint);
 
       $url_place = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=$key_place&input=$waypoint&inputtype=textquery&fields=name,place_id";
       
@@ -38,15 +41,20 @@
 
         $waypoints[$index] = $data['candidates'][0]['name'];  // nameを取得
         $place = $data['candidates'][0]['place_id'];  // place idを取得
-        $url_dir .= "place_id:$place|";
+
+        if ($index == 0) {
+          $url_dir .= "&origin=place_id:$place&waypoints=optimize:true|";
+        } elseif ($index == count($waypoints)-1) {
+          $url_dir = substr($url_dir, 0, -1);  // 末尾の'|'を削除
+          $url_dir .= "&destination=place_id:$place";
+        } else {
+          $url_dir .= "place_id:$place|";
+        }
 
       } else {
         return ['status' => -1, 'log' => $json];
       }
     }
-
-    $url_dir = substr($url_dir, 0, -1);  // 末尾の'|'を削除
-    // redirect($url_dir);
 
 
     // Google Directions APIから経路を取得
