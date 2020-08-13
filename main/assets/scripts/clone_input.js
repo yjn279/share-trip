@@ -1,17 +1,15 @@
-console.log('good morning!');
-
 $(function() {
 
   // clone object
-  $(document).on('click', '.add_input', function() {
+  $(document).on('click', '.add_waypoint', function() {
 
-    var input = $('.place').last();
-    console.log(input);
+    var waypoint = $('.waypoint').last();
 
-    input
+    waypoint
       .clone()
       // .hide()
-      .insertAfter(input)
+      .val('')
+      .insertAfter(waypoint)
 
   });
 });

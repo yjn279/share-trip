@@ -17,13 +17,13 @@
 
   $user = $_SESSION['user'];
   $title = $_POST['title'];
-  $schedule = $_POST['schedule'];
+  $waypoints = $_POST['waypoints'];
   $comment = $_POST['comment'];
 
 
   // ルートの取得
 
-  $routes = routes($schedule);
+  $routes = routes($waypoints);
 
   if ($routes['status'] > 0) {
 
