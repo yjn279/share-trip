@@ -21,18 +21,6 @@
   }
 
 
-  // エラー表示
-
-  function message() {
-    if(isset($_SESSION['message'])) {
-
-      echo "<p>{$_SESSION['message']}</p>";
-      unset($_SESSION['message']);
-
-    }
-  }
-
-
   // 自動実行
   session_start();
 
