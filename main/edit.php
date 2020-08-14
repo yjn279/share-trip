@@ -34,11 +34,13 @@
       $date = $plan['created_at'];
       $name_id = $plan['user_id'];
       $name = $users -> get_user($name_id);
-      $file = $user == $name_id ? 'edit' : 'make';
 
       // sheduleを配列に分割
       $split = $users -> escape(' > ');
       $schedule = explode($split, $schedule);
+
+      if ($user == $name_id) $file = "backend/edit.php?id=$id";
+      else $file = "backend/make.php?id=$id";
 
     ?>
 
