@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'assets/stylesheets.php' ?>
+    <?php include __DIR__ . '/assets/stylesheets.php' ?>
     <title>Edit</title>
   </head>
   <body class="bg-light">
@@ -15,7 +15,7 @@
 
       //インクルード
       
-      include 'assets/header.php';
+      include __DIR__ . '/assets/header.php';
       $users = new Users();
       $plans = new Plans();
 
@@ -34,7 +34,6 @@
       $date = $plan['created_at'];
       $name_id = $plan['user_id'];
       $name = $users -> get_user($name_id);
-      $file = $_SESSION['user'] == $name_id ? 'edit' : 'make';
 
       // sheduleを配列に分割
       $split = $users -> escape(' > ');
@@ -72,6 +71,13 @@
                 <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
               <?php endif ?>
             <?php endforeach ?>
+
+            <!--ルート最適化実装前の投稿への対応 -->
+            <?php if (count($schedule) < 3): ?>
+              <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
+              <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" required></input>
+            <?php endif ?>
+              
             
             <button type="button" class="btn-clone btn btn-info btn-lg btn-block mb-2">+</button>
             <button type="button" class="btn-remove btn btn-info btn-lg btn-block mb-3" style="display: none;">-</button>
@@ -91,7 +97,7 @@
     </main>
     <footer>
     </footer>
-    <?php include 'assets/scripts.php' ?>
+    <?php include __DIR__ . '/assets/scripts.php' ?>
     <script src="assets/scripts/backkey.js"></script>
     <script src="assets/scripts/clone_input.js"></script>
   </body>

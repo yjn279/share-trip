@@ -3,8 +3,8 @@
 
   // インクルード
 
-  include '../libraries/main.php';
-  include '../libraries/maps.php';
+  include __DIR__ . '/../libraries/main.php';
+  include __DIR__ . '/../libraries/maps.php';
   $plans = new Plans();
 
 

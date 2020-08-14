@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'assets/stylesheets.php' ?>
+    <?php include __DIR__ . '/assets/stylesheets.php' ?>
     <title>Timeline</title>
   </head>
   <body class="bg-light">
 
-    <?php include 'assets/header.php' ?>
+    <?php include __DIR__ . '/assets/header.php' ?>
     <?php $plans_inst = new Plans() ?>
 
     <main class="container-fluid py-3">
@@ -30,9 +30,7 @@
       <?php
 
         if (empty($_GET['search'])) $plans = $plans_inst -> get_all();
-        else {
-          $plans = $plans_inst -> get_by_title($_GET['search']);
-        }
+        else $plans = $plans_inst -> get_by_title($_GET['search']);
 
       ?>
 
@@ -59,6 +57,6 @@
     </main>
     <footer>
     </footer>
-    <?php include 'assets/scripts.php' ?>
+    <?php include __DIR__ . '/assets/scripts.php' ?>
   </body>
 </html>
