@@ -83,7 +83,7 @@
 
       // ordersに従ってwaypointsをソート
       foreach ($orders as $order) {
-        array_push($route, $waypoints[$order]);
+        array_push($route, $waypoints[$order+1]);  // $waypointsにはorderとdestinationが含まれる
       }
 
       return ['status' => 1, 'route' => $route, 'copyrights' => $copyrights, ];

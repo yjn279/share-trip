@@ -29,13 +29,13 @@
 
     $route = $routes['route'];
     $copyrights = $routes['copyrights'];  // 表示させる
-    $schedule = '';
+    $schedule = $waypoints[0] . ' > ';
   
     foreach ($route as $place) {
       $schedule .= $place . ' > ';
     }
   
-    $schedule = substr($schedule, 0, -3);  // 末尾の' > 'を削除
+    $schedule .= end($waypoints);
 
 
 
