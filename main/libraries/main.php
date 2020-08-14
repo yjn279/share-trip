@@ -3,10 +3,10 @@
 
   // インクルード
 
-  include 'database.php';
-  include 'users.php';
-  include 'plans.php';
-  include 'calendars.php';
+  include __DIR__ . '/database.php';
+  include __DIR__ . '/users.php';
+  include __DIR__ . '/plans.php';
+  include __DIR__ . '/calendars.php';
 
 
   // セッション管理

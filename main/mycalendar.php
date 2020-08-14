@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'assets/stylesheets.php' ?>
+    <?php include __DIR__ . '/assets/stylesheets.php' ?>
     <title>Mypage</title>
   </head>
   <body class="bg-light">
@@ -12,7 +12,7 @@
 
     <?php
 
-      include 'assets/header.php';
+      include __DIR__ . '/assets/header.php';
       $calendars = new Calendars();
       $plans = new Plans();
 
@@ -72,6 +72,6 @@
     </main>
     <footer>
     </footer>
-    <?php include 'assets/scripts.php' ?>
+    <?php include __DIR__ . '/assets/scripts.php' ?>
   </body>
 </html>

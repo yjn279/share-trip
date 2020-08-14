@@ -3,7 +3,7 @@
 
   // インクルード
   
-  include '../libraries/main.php';
+  include __DIR__ . '../libraries/main.php';
 
 
   // セッション変数を全て削除
