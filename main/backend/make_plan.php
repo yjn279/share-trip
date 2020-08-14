@@ -37,7 +37,7 @@
       $schedule .= $place . ' > ';
     }
   
-    $schedule = substr($schedule, 0, -3);  // 最後の>を削除
+    $schedule = substr($schedule, 0, -3);  // 最後の > を削除
 
 
 

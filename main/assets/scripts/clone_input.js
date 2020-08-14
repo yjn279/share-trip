@@ -6,6 +6,12 @@ $(function() {
   var btn_remove = $('.btn-remove');
 
 
+  // btn_remove
+  if ($('.waypoint').length >= 2) {
+    $(btn_remove).show();  // waypointが2つ以上あるときにbtn_removeを表示
+  }
+
+
   // clone
   btn_clone.click(function() {
 
@@ -35,6 +41,4 @@ $(function() {
     }
     
   });
-
-
 });
