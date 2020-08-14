@@ -30,14 +30,11 @@
           <a class="nav-link" href="mycalendar.php">カレンダー</a>
         </li>
 
-        <li class="nav-item <?= $url == '/make_plan.php' ? 'active' : NULL ?>">
-          <a class="nav-link" href="make_plan.php">プラン作成</a>
+        <li class="nav-item <?= $url == '/make.php' ? 'active' : NULL ?>">
+          <a class="nav-link" href="make.php">プラン作成</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="backend/logout.php">ログアウト</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="helper/test.php">テスト</a>
         </li>
         <!-- Calendar -->
         <!-- Lists -->
