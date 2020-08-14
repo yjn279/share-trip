@@ -33,9 +33,6 @@
         <li class="nav-item">
           <a class="nav-link" href="backend/logout.php">ログアウト</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="helper/test.php">テスト</a>
-        </li>
         <!-- Calendar -->
         <!-- Lists -->
       <?php endif ?>
