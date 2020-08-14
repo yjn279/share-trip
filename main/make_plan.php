@@ -14,7 +14,7 @@
     <?php redirect('login.php', empty($_SESSION['user'])) ?>
 
     <main class="col-md-6 mx-md-auto py-5">
-      <form class="bg-light" action="backend/make_plan.php" method="POST" enctype="multipart/form-data">
+      <form class="bg-light" action="backend/make.php" method="POST" enctype="multipart/form-data">
         <h5>タイトル</h5>
         <div class="input-group mb-3">
           <input class="form-control" type="text" name="title" placeholder="タイトル" required>

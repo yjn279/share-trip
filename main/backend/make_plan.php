@@ -70,7 +70,7 @@
 
 
   // プランの登録
-  $id = $plans -> make_plan($user, $title, $schedule, $comment, $image);
+  $id = $plans -> make($user, $title, $schedule, $comment, $image);
 
   
   // リダイレクト
