@@ -72,8 +72,8 @@
 
             <!--ルート最適化実装前の投稿への対応 -->
             <?php if (count($schedule) < 3): ?>
-              <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" value="<?= $place ?>" required></input>
-              <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
+              <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
+              <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" required></input>
             <?php endif ?>
               
             
