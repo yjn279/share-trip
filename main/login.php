@@ -10,7 +10,7 @@
 
     <?php include 'assets/header.php' ?>
     <?php redirect('timeline.php', !empty($_SESSION['user'])) ?>
-    
+
     <main class="col-lg-4 mx-auto p-5">
       <h1 class="text-info text-center mb-3">ログイン</h1>
       <form action="backend/login.php" method="POST">

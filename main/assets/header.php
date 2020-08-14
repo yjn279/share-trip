@@ -26,6 +26,9 @@
         <li class="nav-item <?= $url == '/mypage.php' ? 'active' : NULL ?>">
           <a class="nav-link" href="mypage.php">マイページ</a>
         </li>
+        <li class="nav-item <?= $url == '/mycalendar.php' ? 'active' : NULL ?>">
+          <a class="nav-link" href="mycalendar.php">カレンダー</a>
+        </li>
 
         <li class="nav-item <?= $url == '/make_plan.php' ? 'active' : NULL ?>">
           <a class="nav-link" href="make_plan.php">プラン作成</a>

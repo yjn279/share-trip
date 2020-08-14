@@ -1,20 +1,32 @@
-<!-- 日付を受け取る -->
-
-<!-- sessionからuser_idを取得 -->
-  <!-- $user = $_SESSION['user']; -->
-
-<!-- getでplan_idを取得 -->
-  <!-- href="plan.php?id=<?= $plan['plan_id'] ?> -->
-  <!-- $id = $_GET['id']; -->
-
-<!-- calendar tableに保存 ← 4つの情報を引数としてDBに保存する関数をlibraries/calendar.phpに作成-->
-
-<!-- DBからプランを一覧で取得する関数をlibraries/calendar.phpに作成 -->
-  <!-- libraries\plans.phpの82-行目のやつ -->
-
-<!-- mypage.php 22-47行目で一覧出力 -->
 
 
 
+<?php
 
-<!--  if(!empty($_SESSION['user'])) -->
+
+  // インクルード
+  include '../libraries/main.php';
+  $calendars = new Calendars();
+
+
+  // リダイレクト
+  redirect('timeline.php', empty($_SESSION['user'] || $_GET['id'] || $_POST['from'] || $_POST['to']));
+
+
+  // データの取得
+  $user = $_SESSION['user'];
+  $plan = $_GET['plan'];
+  $from = $_POST['from'];
+  $to = $_POST['to'];
+
+
+
+  $id = $calendars -> add($user, $plan, $from, $to);
+
+
+
+  // リダイレクト
+  redirect('../mycalendar.php');
+
+
+?>
