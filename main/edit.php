@@ -36,9 +36,12 @@
       $name = $users -> get_user($name_id);
       $file = $_SESSION['user'] == $name_id ? 'edit' : 'make_plan';
 
+      // sheduleを配列に分割
+      $split = $users -> escape(' > ');
+      $schedule = explode($split, $schedule);
+
       if ($user == $name_id) $file = "backend/edit.php?id=$id";
       else $file = "backend/make_plan.php?id=$id";
-
 
     ?>
 
@@ -51,18 +54,30 @@
 
         <form class="col-md-6" action="<?= $file ?>" method="POST" enctype="multipart/form-data">
           <div class="card-body">
-            <h4>タイトル</h4>
+            <h5>タイトル</h5>
             <div class="input-group mb-3">
               <input class="form-control" type="text" name="title" placeholder="タイトル" value="<?= $title ?>" required>
               <div class="input-group-append">
                 <span class="input-group-text">への旅行</span>
               </div>
             </div>
-            <h4>スケジュール</h4>
-            <textarea class="form-control mb-3" name="schedule" cols="30" rows="10" placeholder="スケジュール" required><?= $schedule ?></textarea>
-            <h4>コメント</h4>
+            <h5>スケジュール</h5>
+
+            <?php foreach ($schedule as $index => $place): ?>
+              <?php if ($index == 0): ?>
+                <input class="form-control mb-2" type="text" name="origin" placeholder="出発地を入力" value="<?= $place ?>" required></input>
+              <?php elseif ($index < count($schedule) - 1): ?>
+                <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" value="<?= $place ?>" required></input>
+              <?php else: ?>
+                <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
+              <?php endif ?>
+            <?php endforeach ?>
+            
+            <button type="button" class="btn-clone btn btn-info btn-lg btn-block mb-2">+</button>
+            <button type="button" class="btn-remove btn btn-info btn-lg btn-block mb-3" style="display: none;">-</button>
+            <h5>コメント</h5>
             <textarea class="form-control mb-3" name="comment" cols="30" rows="10" placeholder="コメント"><?= $comment ?></textarea>
-            <h4 class="mb-2">画像</h4>
+            <h5 class="mb-2">画像</h5>
             <div class="custom-file mb-2">
               <input class="custom-file-input" id="customFile" type="file" name="image" accept="image/*">
               <label class="custom-file-label" for="customFile">画像を選択</label>
@@ -78,5 +93,6 @@
     </footer>
     <?php include 'assets/scripts.php' ?>
     <script src="assets/scripts/backkey.js"></script>
+    <script src="assets/scripts/clone_input.js"></script>
   </body>
 </html>

@@ -23,10 +23,11 @@
           </div>
         </div>
         <h5>スケジュール</h5>
-        <input class="form-control place mb-3" type="text" name="schedule[]" placeholder="経由地を入力" required></input>
-        <div class="form-block">
-          <p class="btn btn-info btn-lg btn-block add_input" title="Add">+</p>
-        </div>
+        <input class="form-control mb-2" type="text" name="origin" placeholder="出発地を入力" required></input>
+        <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
+        <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" required></input>
+        <button type="button" class="btn-clone btn btn-info btn-lg btn-block mb-2">+</button>
+        <button type="button" class="btn-remove btn btn-info btn-lg btn-block mb-3" style="display: none;">-</button>
         <h5>コメント</h5>
         <textarea class="form-control mb-3" name="comment" cols="30" rows="10" placeholder="コメント"></textarea>
         <h5 class="mb-2">画像</h5>

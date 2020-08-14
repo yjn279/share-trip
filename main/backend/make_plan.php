@@ -10,20 +10,22 @@
 
   // リダイレクト
 
-  redirect('timeline.php', empty($_SESSION['user'] || $_POST['title'] || $_POST['schedule']));
+  redirect('timeline.php', empty($_SESSION['user'] || $_POST['title'] || $_POST['origin'] || $_POST['destination'] || $_POST['waypoints']));
 
 
   // データの取得
 
   $user = $_SESSION['user'];
   $title = $_POST['title'];
-  $schedule = $_POST['schedule'];
+  $origin = $_POST['origin'];
+  $destination = $_POST['destination'];
+  $waypoints = $_POST['waypoints'];
   $comment = $_POST['comment'];
 
 
   // ルートの取得
 
-  $routes = routes($schedule);
+  $routes = routes($origin, $destination, $waypoints);
 
   if ($routes['status'] > 0) {
 
@@ -35,7 +37,7 @@
       $schedule .= $place . ' > ';
     }
   
-    $schedule = substr($schedule, 0, -3);  // 末尾の' > 'を削除
+    $schedule = substr($schedule, 0, -3);  // 最後の > を削除
 
 
 
