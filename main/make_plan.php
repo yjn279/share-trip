@@ -23,9 +23,9 @@
           </div>
         </div>
         <h5>スケジュール</h5>
-        <input class="form-control mb-2" type="text" name="waypoints[]" placeholder="出発地を入力" required></input>
+        <input class="form-control mb-2" type="text" name="origin" placeholder="出発地を入力" required></input>
         <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
-        <input class="form-control mb-3" type="text" name="waypoints[]" placeholder="帰着地を入力" required></input>
+        <input class="form-control mb-3" type="text" name="destination" placeholder="帰着地を入力" required></input>
         <div class="form-block">
           <p class="btn-clone btn btn-info btn-lg btn-block mb-2">+</p>
         </div>

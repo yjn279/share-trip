@@ -51,18 +51,18 @@
 
         <form class="col-md-6" action="<?= $file ?>" method="POST" enctype="multipart/form-data">
           <div class="card-body">
-            <h4>タイトル</h4>
+            <h5>タイトル</h5>
             <div class="input-group mb-3">
               <input class="form-control" type="text" name="title" placeholder="タイトル" value="<?= $title ?>" required>
               <div class="input-group-append">
                 <span class="input-group-text">への旅行</span>
               </div>
             </div>
-            <h4>スケジュール</h4>
+            <h5>スケジュール</h5>
             <textarea class="form-control mb-3" name="schedule" cols="30" rows="10" placeholder="スケジュール" required><?= $schedule ?></textarea>
-            <h4>コメント</h4>
+            <h5>コメント</h4>
             <textarea class="form-control mb-3" name="comment" cols="30" rows="10" placeholder="コメント"><?= $comment ?></textarea>
-            <h4 class="mb-2">画像</h4>
+            <h5 class="mb-2">画像</h5>
             <div class="custom-file mb-2">
               <input class="custom-file-input" id="customFile" type="file" name="image" accept="image/*">
               <label class="custom-file-label" for="customFile">画像を選択</label>
