@@ -27,7 +27,10 @@
         <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
         <input class="form-control mb-3" type="text" name="waypoints[]" placeholder="帰着地を入力" required></input>
         <div class="form-block">
-          <p class="add_waypoint btn btn-info btn-lg btn-block mb-2" title="Add">+</p>
+          <p class="btn-clone btn btn-info btn-lg btn-block mb-2">+</p>
+        </div>
+        <div>
+          <p class="btn-remove btn btn-info btn-lg btn-block mb-2" style="display: none;">-</p>
         </div>
         <h5>コメント</h5>
         <textarea class="form-control mb-3" name="comment" cols="30" rows="10" placeholder="コメント"></textarea>
