@@ -5,7 +5,7 @@
 
 
   // インクルード
-  include '../libraries/main.php';
+  include __DIR__ . '/../libraries/main.php';
   $calendars = new Calendars();
 
 

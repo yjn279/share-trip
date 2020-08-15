@@ -1,5 +1,5 @@
 <!-- include -->
-<?php include 'libraries/main.php' ?>
+<?php include __DIR__ . '/../libraries/main.php' ?>
 
 <!-- header -->
 <?php $url = $_SERVER['REQUEST_URI'] ?>

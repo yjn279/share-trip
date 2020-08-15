@@ -3,7 +3,8 @@
 
   // インクルード
 
-  include '../libraries/main.php';
+  include __DIR__ . '/../libraries/main.php';
+  include __DIR__ . '/../libraries/maps.php';
   $plans = new Plans();
 
 
@@ -20,8 +21,21 @@
   $destination = $_POST['destination'];
   $waypoints = $_POST['waypoints'];
   $comment = $_POST['comment'];
-  $file = $plans -> compress_img($_FILES['image']['tmp_name']);
-  $image = file_get_contents($file);
+
+  
+  if (!empty($_FILES['image']['tmp_name'])) {
+
+    $file = $plans -> compress_img($_FILES['image']['tmp_name']);
+    $image = file_get_contents($file);
+
+  } else {
+
+    $plan = $plans -> get_plan($id);
+    $image = $plan['image'];
+
+  }
+
+  if (!empty($img_del))  $image = NULL;
 
 
   // ルートの取得
