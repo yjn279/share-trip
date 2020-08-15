@@ -39,8 +39,6 @@
   
     $schedule = substr($schedule, 0, -3);  // 最後の > を削除
 
-
-
     if (!empty($_GET['id'])) {
 
       $id = $_GET['id'];
