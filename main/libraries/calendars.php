@@ -60,6 +60,17 @@
 
     }
 
+    function delete(string $id) {
+
+      $id = (int) $this -> escape($id);
+
+      $sql = 'DELETE FROM calendars WHERE calendar_id=:id';
+      $stmt = $this->pdo -> prepare($sql);
+      $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt -> execute();
+      
+    }
+
 
   }
 ?>

@@ -22,7 +22,7 @@
 
 
       // リダイレクト
-      redirect('timeline.php', empty($_GET['id']));
+      redirect('timeline.php', empty($_SESSION['user'] || $_GET['id']));
       // header('Content-type:image/*');
 
       $id = $_GET['id'];
@@ -127,8 +127,8 @@
               <p class="card-text"><?= $title ?>への旅行</p>
               <p class="card-text"><?= $schedule ?></p>
               <p class="card-text"><?= $comment ?></p>
-        
-              <h4 class="card-text">宿をお探しですか？周辺のホテル・旅館はこちら</h4>
+
+              <h4 class="card-text">宿をお探しですか？おすすめの周辺のホテル・旅館はこちら</h4>
 
 
                     <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text></svg> -->
@@ -136,7 +136,7 @@
 
                       <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <a class="card border-0 text-reset shadow-sm my-4" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> >
+                      <a class="card border-0 text-reset shadow-sm" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
                       <img src="<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
                                             height: 270px;
                                             object-fit: cover;
@@ -153,8 +153,8 @@
                       </div>
 
               <?php
-              foreach($result["hotels"] as $resulteach) {
-
+              foreach($result["hotels"] as $index => $resulteach) {
+                if ($index > 0){
                 if (!empty($resulteach['hotel'][0]['hotelBasicInfo']['hotelName'])) { ?>
 
 
@@ -162,7 +162,7 @@
 
 
                       <div class="carousel-item">
-                        <a class="card border-0 text-reset shadow-sm my-4" href=<?= $resulteach['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> >
+                        <a class="card border-0 text-reset shadow-sm " href=<?= $resulteach['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
                         <img src="<?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
                         height: 270px;
                         object-fit: cover;
@@ -186,6 +186,7 @@
 
                 }
               }
+            }
               ?>
               </div>
 
@@ -203,18 +204,50 @@
 
 
 
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-lg btn-block border-info text-info mt-5" data-toggle="modal" data-target="#exampleModal">削除</button>
 
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header border-0">
+                    <h5 class="modal-title" id="exampleModalLabel">本当に削除しますか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    一度削除したカレンダーは復元できません。
+                  </div>
+                  <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <a class="btn btn-danger" href="backend/deletecalendar.php?id=<?= $id ?>">削除</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
           </div>
+
+
         </div>
       </div>
 
 
 
+
+
+
     </main>
     <footer>
+      <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+  <a href="https://webservice.rakuten.co.jp/" target="_blank">Supported by Rakuten Developers</a>
+  <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+
     </footer>
     <?php include __DIR__ . '/assets/scripts.php' ?>
+
   </body>
 </html>
