@@ -28,6 +28,7 @@
         <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" required></input>
         <button type="button" class="btn-clone btn btn-info btn-lg btn-block mb-2">+</button>
         <button type="button" class="btn-remove btn btn-info btn-lg btn-block mb-3" style="display: none;">-</button>
+        <button type="button" class="btn-ajax btn btn-info btn-lg btn-block mb-3">プラン最適化</button>
         <h5>コメント</h5>
         <textarea class="form-control mb-3" name="comment" cols="30" rows="10" placeholder="コメント"></textarea>
         <h5 class="mb-2">画像</h5>
@@ -44,5 +45,6 @@
     <?php include __DIR__ . '/assets/scripts.php' ?>
     <script src="assets/scripts/backkey.js"></script>
     <script src="assets/scripts/clone_input.js"></script>
+    <script src="assets/scripts/ajax.js"></script>
   </body>
 </html>
