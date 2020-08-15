@@ -3,9 +3,9 @@
 
   // DB接続
 
-  $dsn = 'mysql:dbname=heroku_562044c1e47cad0;host=us-cdbr-east-02.cleardb.com';
-  $user = 'b998db552f4d3b';
-  $password = 'd77d3197';
+  $dsn = 'dsn';
+  $user = 'user';
+  $password = 'password';
 
   $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 

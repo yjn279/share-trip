@@ -53,7 +53,7 @@
 
 
       <?php
-      $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=1072133978747396946";
+      $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=id";
 
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, $api_url);
@@ -131,7 +131,7 @@
               <h4 class="card-text">宿をお探しですか？おすすめの周辺のホテル・旅館はこちら</h4>
 
 
-                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text></svg> -->
+                    
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
                       <div class="carousel-inner">
@@ -174,7 +174,6 @@
                           <p>大人１人 <?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
                           </div>
                         </a>
-                        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect fill="#666" width="100%" height="100%"/><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text></svg> -->
                       </div>
 
 
