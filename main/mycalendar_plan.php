@@ -53,7 +53,7 @@
 
 
       <?php
-      $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=id";
+      $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=1072133978747396946";
 
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, $api_url);
