@@ -37,14 +37,12 @@ $(function(){
         var copyrights = json['copyrights'];
 
         route.forEach((place, index) => {
-
-          console.log(place);
-  
           if (0 < index && index < route.length - 1) {
             $('.waypoint').eq(index - 1).val(place);
           }
-  
         });
+
+        $('#alert').show();
 
       } else {
 
