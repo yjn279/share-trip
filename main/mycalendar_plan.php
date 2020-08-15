@@ -67,32 +67,32 @@
       // echo '<pre>' . $json . '</pre>';
       // var_dump($result);
 
-      foreach($result["hotels"] as $resulteach) {
-
-        if (!empty($resulteach['hotel'][0]['hotelBasicInfo']['hotelName'])) {
-
-          // $copyrights = $direction['routes'][0]['copyrights'];
-          // $order = $direction['routes'][0]['waypoint_order'];
-          // $routes = $direction['routes'][0]['legs'];
-
-          // $route[] = $origin['name'][0];
-          // echo $resulteach[0]['hotel'][$index]['hotelBasicInfo']['hotelName'];
-          echo $resulteach['hotel'][0]['hotelBasicInfo']['hotelName'];
-          // orderに従ってwaypointsをソート
-          // foreach ($result as $resulteach) {
-
-            // $route[] = $waypoints['name'][$place];
-          // }
+  //     foreach($result["hotels"] as $resulteach) {
   //
-          // $route[] = $destination['name'][0];
-
-          // return ['status' => 1, 'route' => $route, 'copyrights' => $copyrights];
-
-        } else {
-          var_dump($result);
-
-        }
-      }
+  //       if (!empty($resulteach['hotel'][0]['hotelBasicInfo']['hotelName'])) {
+  //
+  //         // $copyrights = $direction['routes'][0]['copyrights'];
+  //         // $order = $direction['routes'][0]['waypoint_order'];
+  //         // $routes = $direction['routes'][0]['legs'];
+  //
+  //         // $route[] = $origin['name'][0];
+  //         // echo $resulteach[0]['hotel'][$index]['hotelBasicInfo']['hotelName'];
+  //         echo $resulteach['hotel'][0]['hotelBasicInfo']['hotelName'];
+  //         // orderに従ってwaypointsをソート
+  //         // foreach ($result as $resulteach) {
+  //
+  //           // $route[] = $waypoints['name'][$place];
+  //         // }
+  // //
+  //         // $route[] = $destination['name'][0];
+  //
+  //         // return ['status' => 1, 'route' => $route, 'copyrights' => $copyrights];
+  //
+  //       } else {
+  //         var_dump($result);
+  //
+  //       }
+  //     }
 
 
 
@@ -127,7 +127,80 @@
               <p class="card-text"><?= $title ?>への旅行</p>
               <p class="card-text"><?= $schedule ?></p>
               <p class="card-text"><?= $comment ?></p>
-              <p class="card-text"><?= $hotel ?></p>
+        
+              <h4 class="card-text">宿をお探しですか？周辺のホテル・旅館はこちら</h4>
+
+
+                    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect fill="#777" width="100%" height="100%"/><text fill="#555" dy=".3em" x="50%" y="50%">First slide</text></svg> -->
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+                      <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <a class="card border-0 text-reset shadow-sm my-4" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> >
+                      <img src="<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
+                                            height: 270px;
+                                            object-fit: cover;
+
+
+                                            ">
+
+                      <div class="carousel-caption d-none d-md-block">
+                                              <h5><?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelName'] ?></h5>
+                                              <p>大人１人 <?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円から </p>
+                                              </div>
+                                            </a>
+
+                      </div>
+
+              <?php
+              foreach($result["hotels"] as $resulteach) {
+
+                if (!empty($resulteach['hotel'][0]['hotelBasicInfo']['hotelName'])) { ?>
+
+
+                  <!-- // echo $resulteach['hotel'][0]['hotelBasicInfo']['hotelName']: -->
+
+
+                      <div class="carousel-item">
+                        <a class="card border-0 text-reset shadow-sm my-4" href=<?= $resulteach['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> >
+                        <img src="<?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
+                        height: 270px;
+                        object-fit: cover;
+
+                        ">
+
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5><?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelName'] ?></h5>
+                          <p>大人１人 <?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
+                          </div>
+                        </a>
+                        <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect fill="#666" width="100%" height="100%"/><text fill="#444" dy=".3em" x="50%" y="50%">Second slide</text></svg> -->
+                      </div>
+
+
+
+
+              <?php
+                } else {
+                  var_dump($result);
+
+                }
+              }
+              ?>
+              </div>
+
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+
+
+
 
 
 
