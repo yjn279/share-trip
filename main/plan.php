@@ -20,6 +20,7 @@
       $plans = new Plans();
 
 
+
       // リダイレクト
       redirect('timeline.php', empty($_GET['id']));
       // header('Content-type:image/*');
@@ -36,6 +37,7 @@
       $date = $plan['created_at'];
       $name_id = $plan['user_id'];
       $name = $users -> get_user($name_id);
+
 
 
     ?>
