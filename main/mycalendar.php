@@ -12,12 +12,17 @@
 
     <?php
 
+
+
       include __DIR__ . '/assets/header.php';
       $calendars = new Calendars();
       $plans = new Plans();
 
 
       $user = $_SESSION['user'];
+
+      // リダイレクト
+      redirect('timeline.php', empty($_SESSION['user'] ));
 
     ?>
 
@@ -29,19 +34,18 @@
 
 
 
-
-        <p>test1</p>
         <?php foreach ($mycalendars as $mycalendar): ?>
 
           <?php $plan_id = $mycalendar['plan_id']?>
           <?php $myplans = $plans -> get_plan($plan_id) ?>
 
 
+
           <a class="card border-0 text-reset shadow-sm my-4" href="mycalendar_plan.php?id=<?= $mycalendar["calendar_id"] ?>" >
 
 
             <div class="card bg-dark text-white">
-              <img class="card-img" src="backend/image.php?id=<?= $plan_id ?>" alt="Card image"
+              <img class="card-img" src="backend/image.php?id=<?= $plan_id ?>" onerror="this.src = 'https://cdn.pixabay.com/photo/2015/07/11/23/02/plane-841441_960_720.jpg';"　alt="Card image"
               style="width: 100%;
               height: 270px;
               object-fit: cover;
@@ -51,14 +55,14 @@
               <div class="card-img-overlay">
                 <h5 class="card-title"><?= $mycalendar['from_date'] ?> - <?= $mycalendar['to_date'] ?></h5>
                 <p class="card-text"><?= $myplans['title'] ?> への旅行 </p>
-                <p class="card-text">Last updated 3 mins ago</p>
+                <!-- <p class="card-text">Last updated 3 mins ago</p> -->
               </div>
             </div>
 
 
 
           </a>
-        
+
 
 
 
