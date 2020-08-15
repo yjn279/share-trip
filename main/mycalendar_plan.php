@@ -247,6 +247,6 @@
 
     </footer>
     <?php include __DIR__ . '/assets/scripts.php' ?>
-
+    <script src="asetts/scripts/calendar_modal.js"></script>
   </body>
 </html>
