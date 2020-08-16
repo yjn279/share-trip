@@ -34,6 +34,8 @@
 
 
 
+
+
         <?php foreach ($mycalendars as $mycalendar): ?>
 
           <?php $plan_id = $mycalendar['plan_id']?>
@@ -41,15 +43,19 @@
 
 
 
-          <a class="card border-0 text-reset shadow-sm my-4" href="mycalendar_plan.php?id=<?= $mycalendar["calendar_id"] ?>" >
 
 
-            <div class="card bg-dark text-white">
+
+          <a class="card border-0 text-reset shadow-sm my-4 " href="mycalendar_plan.php?id=<?= $mycalendar["calendar_id"] ?> " >
+
+
+            <div class="card bg-dark text-white ">
               <img class="card-img" src="backend/image.php?id=<?= $plan_id ?>" onerror="this.src = 'https://cdn.pixabay.com/photo/2015/07/11/23/02/plane-841441_960_720.jpg';"　alt="Card image"
               style="width: 100%;
               height: 270px;
               object-fit: cover;
               margin-right: 3%;
+              filter: brightness(80%)saturate(170%);
               ">
 
               <div class="card-img-overlay">
