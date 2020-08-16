@@ -51,17 +51,18 @@
           <img class="card-img-top col-md-6" src="backend/image.php?id=<?= $id ?>" alt="image">
         <?php endif ?>
 
-        <!-- alert -->
-        <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert" id="alert" style="display: none;">
-          プランを最適化しました。
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
         <!-- form -->
         <form class="col-md-6" action="<?= $file ?>" method="POST" enctype="multipart/form-data">
           <div class="card-body">
+
+              <!-- alert -->
+              <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert" id="alert" style="display: none;">
+                プランを最適化しました。
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
             <h5>タイトル</h5>
             <div class="input-group mb-5">
               <input class="form-control" type="text" name="title" placeholder="タイトル" value="<?= $title ?>" required>
@@ -73,18 +74,18 @@
 
             <?php foreach ($schedule as $index => $place): ?>
               <?php if ($index == 0): ?>
-                <input class="form-control mb-2" type="text" name="origin" placeholder="出発地を入力" value="<?= $place ?>" required></input>
+                <input class="form-control mb-2" id="origin" type="text" name="origin" placeholder="出発地を入力" value="<?= $place ?>" required></input>
               <?php elseif ($index < count($schedule) - 1): ?>
                 <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" value="<?= $place ?>" required></input>
               <?php else: ?>
-                <input class="form-control mb-3" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
+                <input class="form-control mb-3" id="destination" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
               <?php endif ?>
             <?php endforeach ?>
 
             <!-- ルート最適化実装前の投稿への対応 -->
             <?php if (count($schedule) < 3): ?>
               <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
-              <input class="form-control mb-3" type="text" name="destination" placeholder="帰着地を入力" required></input>
+              <input class="form-control mb-3" id="destination" type="text" name="destination" placeholder="帰着地を入力" required></input>
             <?php endif ?>
             
             <button type="button" class="btn-ajax btn btn-info mr-2 mb-5">並び替え</button>
@@ -109,5 +110,6 @@
     <?php include __DIR__ . '/assets/scripts.php' ?>
     <script src="assets/scripts/backkey.js"></script>
     <script src="assets/scripts/clone_input.js"></script>
+    <script src="assets/scripts/ajax.js"></script>
   </body>
 </html>
