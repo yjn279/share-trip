@@ -23,33 +23,30 @@
 
       // リダイレクト
       redirect('timeline.php', empty($_SESSION['user'] || $_GET['id']));
-      // header('Content-type:image/*');
+
+
+      // データの取得
 
       $id = $_GET['id'];
+      $mycalendars = $calendars -> get_calendar($id);
+      $plan_id = $mycalendars['plan_id'];
+      $from = $mycalendars['from_date'];
+      $to = $mycalendars['to_date'];
 
-
-      ?>
-
-
-      <?php $mycalendars = $calendars -> get_calendar($id) ?>
-      <?php $plan_id = $mycalendars['plan_id']?>
-      <?php $myplans = $plans -> get_plan($plan_id);
+      $myplans = $plans -> get_plan($plan_id);
       $title = $myplans['title'];
       $schedule = $myplans['schedule'];
       $comment = $myplans['comment'];
       $image = $myplans['image'];
-       ?>
 
 
+      // sheduleを配列に分割
+      $split = $plans -> escape(' > ');
+      $schedule = explode($split, $schedule);
 
-             <?php $mycalendars = $calendars -> get_calendar($id) ?>
-             <?php $plan_id = $mycalendars['plan_id']?>
-             <?php $myplans = $plans -> get_plan($plan_id);
-             $title = $myplans['title'];
-             $schedule = $myplans['schedule'];
-             $comment = $myplans['comment'];
-             $image = $myplans['image'];
-              ?>
+
+      ?>
+
 
 <style>
 *ズームイン*/
@@ -153,21 +150,41 @@
 
           <div class="col-md-6 mx-md-auto">
             <div class="card-body">
-              <h2 class="card-title"><?= $title ?>への旅行</h2>
-              <p class="card-text"><?= $mycalendars['from_date'] ?>　〜　<?= $mycalendars['to_date'] ?></p>
-              <h4 class="card-text">おすすめの周辺のホテル・旅館はこちら</h4>
-<!-- ここからホテルサジェスト -->
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
-                        <div class="carousel-inner">
-                            <div class="carousel-item active zoomIn filter">
-                              <a class="card border-0 text-reset shadow-sm" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
-                                <img src="<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
-                                            height: 270px;
-                                            object-fit: cover;
+              <!-- form -->
+              <form>
+                <h5>タイトル</h5>
+                <div class="input-group mb-3">
+                  <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
+                  <div class="input-group-append">
+                    <span class="input-group-text">への旅行</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <input class="form-control bg-light mb-2" type="date" value="<?= $from ?>" readonly></input>
+                  </div>
+                  <p> - </p>
+                  <div class="col">
+                    <input class="form-control bg-light mb-5" type="date" value="<?= $to ?>" readonly></input>
+                  </div>
+                </div>
 
 
-                                            ">
+                <h5 class="card-text">おすすめの周辺のホテル・旅館はこちら</h5>
+         <!-- ここからホテルサジェスト -->
+                      <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
+
+                          <div class="carousel-inner">
+                              <div class="carousel-item active zoomIn filter">
+                                <a class="card border-0 text-reset shadow-sm" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
+                                  <img src="<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
+                                              height: 270px;
+                                              object-fit: cover;
+
+
+                                              ">
 
                                             <div class="carousel-caption d-none d-md-block">
                                               <h5><?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelName'] ?></h5>
@@ -218,8 +235,51 @@
 
 <!-- ここまでホテルサジェスト -->
 
-              <p class="card-text"><?= $schedule ?></p>
-              <p class="card-text"><?= $comment ?></p>
+              <h5>スケジュール</h5>
+                <?php foreach ($schedule as $index => $place): ?>
+                  <?php if ($index == 0): ?>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">出発</span>
+                      </div>
+                      <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
+                    </div>
+                  <?php elseif ($index < count($schedule) - 1): ?>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">></span>
+                      </div>
+                      <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
+                    </div>
+                  <?php else: ?>
+                    <div class="input-group mb-5">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">到着</span>
+                      </div>
+                      <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
+                    </div>
+                  <?php endif ?>
+                <?php endforeach ?>
+
+                <!-- ルート最適化実装前の投稿への対応 -->
+                <?php if (count($schedule) < 3): ?>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">></span>
+                    </div>
+                    <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
+                  </div>
+                  <div class="input-group mb-5">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">到着</span>
+                    </div>
+                    <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
+                  </div>
+                <?php endif ?>
+                
+                <h5>コメント</h5>
+                <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
+              </form>
 
 
 

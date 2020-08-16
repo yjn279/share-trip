@@ -36,7 +36,7 @@
 
 
       // sheduleを配列に分割
-      $split = $users -> escape(' > ');
+      $split = $plans -> escape(' > ');
       $schedule = explode($split, $schedule);
 
 
@@ -103,7 +103,6 @@
                   
                   <h5>コメント</h5>
                   <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
-                  <!-- <input class="btn btn-info btn-lg btn-block" type="submit" value="編集！"> -->
                 </form>
 
                 <?php if(!empty($_SESSION['user'])): ?>
