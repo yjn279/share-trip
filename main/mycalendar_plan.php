@@ -51,6 +51,80 @@
              $image = $myplans['image'];
               ?>
 
+<style>
+*ズームイン*/
+.zoomIn img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    /* -webkit-transition: .3s ease-in-out; */
+
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+.zoomIn:hover img {
+  transform:scale(1.2,1.2);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+/*黒色フィルター ＋　キャプション*/
+.filter img{
+    width:100%;
+    height:270px;
+}
+.filter a{
+    display:block;
+    position: relative;
+    width:100%;
+    min-height:270px;
+    display: flex;
+    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    align-items: flex-end;
+}
+.filter .name{
+    color:#FFF;
+    position: absolute;
+    width: 100%;
+    min-height:270px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 160%;
+    font-family: bolder
+}
+.filter a:before{
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: ' ';
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+.filter a:hover:before{
+    background-color: rgba(0,0,0,0.0);
+}
+
+</style>
+
+
+
+
+
 
       <?php
       $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=1072133978747396946";
@@ -131,11 +205,15 @@
               <h4 class="card-text">宿をお探しですか？おすすめの周辺のホテル・旅館はこちら</h4>
 
 
+<<<<<<< HEAD
+
+=======
                     
+>>>>>>> 161adfea54187a56c6573090463f66a3668fc84a
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
                       <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active zoomIn filter">
                       <a class="card border-0 text-reset shadow-sm" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
                       <img src="<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
                                             height: 270px;
@@ -161,7 +239,7 @@
                   <!-- // echo $resulteach['hotel'][0]['hotelBasicInfo']['hotelName']: -->
 
 
-                      <div class="carousel-item">
+                      <div class="carousel-item zoomIn filter">
                         <a class="card border-0 text-reset shadow-sm " href=<?= $resulteach['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
                         <img src="<?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
                         height: 270px;
