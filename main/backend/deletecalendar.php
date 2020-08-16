@@ -22,7 +22,7 @@
 
 
   // リダイレクト
-  redirect('../timeline.php?from=delete');
+  redirect('../timeline.php?from=deletecalendar');
 
 
 ?>
