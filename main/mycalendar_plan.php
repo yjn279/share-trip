@@ -205,7 +205,11 @@
               <h4 class="card-text">宿をお探しですか？おすすめの周辺のホテル・旅館はこちら</h4>
 
 
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 161adfea54187a56c6573090463f66a3668fc84a
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
                       <div class="carousel-inner">
