@@ -51,10 +51,19 @@
           <img class="card-img-top col-md-6" src="backend/image.php?id=<?= $id ?>" alt="image">
         <?php endif ?>
 
+        <!-- alert -->
+        <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert" id="alert" style="display: none;">
+          プランを最適化しました。
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- form -->
         <form class="col-md-6" action="<?= $file ?>" method="POST" enctype="multipart/form-data">
           <div class="card-body">
             <h5>タイトル</h5>
-            <div class="input-group mb-3">
+            <div class="input-group mb-5">
               <input class="form-control" type="text" name="title" placeholder="タイトル" value="<?= $title ?>" required>
               <div class="input-group-append">
                 <span class="input-group-text">への旅行</span>
@@ -68,29 +77,28 @@
               <?php elseif ($index < count($schedule) - 1): ?>
                 <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" value="<?= $place ?>" required></input>
               <?php else: ?>
-                <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
+                <input class="form-control mb-3" type="text" name="destination" placeholder="帰着地を入力" value="<?= $place ?>" required></input>
               <?php endif ?>
             <?php endforeach ?>
 
             <!-- ルート最適化実装前の投稿への対応 -->
             <?php if (count($schedule) < 3): ?>
               <input class="waypoint form-control mb-2" type="text" name="waypoints[]" placeholder="経由地を入力" required></input>
-              <input class="form-control mb-2" type="text" name="destination" placeholder="帰着地を入力" required></input>
+              <input class="form-control mb-3" type="text" name="destination" placeholder="帰着地を入力" required></input>
             <?php endif ?>
-              
             
-            <button type="button" class="btn-clone btn btn-info btn-lg btn-block mb-2">+</button>
-            <button type="button" class="btn-remove btn btn-info btn-lg btn-block mb-2" style="display: none;">-</button>
-            <button type="button" class="btn-ajax btn btn-info btn-lg btn-block mb-3"></button>
+            <button type="button" class="btn-ajax btn btn-info mr-2 mb-5">並び替え</button>
+            <button type="button" class="btn-clone btn btn-info mr-1 mb-5">+</button>
+            <button type="button" class="btn-remove btn btn-info mb-5" style="display: none;">-</button>
             <h5>コメント</h5>
-            <textarea class="form-control mb-3" name="comment" cols="30" rows="10" placeholder="コメント"><?= $comment ?></textarea>
+            <textarea class="form-control mb-5" name="comment" cols="30" rows="10" placeholder="コメント"><?= $comment ?></textarea>
             <h5 class="mb-2">画像</h5>
             <div class="custom-file mb-2">
               <input class="custom-file-input" id="customFile" type="file" name="image" accept="image/*">
               <label class="custom-file-label" for="customFile">画像を選択</label>
             </div>
             <input class="mb-2 mr-2" type="checkbox" name="img_del" value="TRUE">画像を削除
-            <p class="alert alert-warning mb-3">画像は3MBまでアップロードできます。</p>
+            <p class="alert alert-warning mb-5">画像は3MBまでアップロードできます。</p>
             <input class="btn btn-info btn-lg btn-block" type="submit" value="編集！">
           </div>
         </form>
