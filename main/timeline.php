@@ -12,7 +12,8 @@
     <?php $plans_inst = new Plans() ?>
 
     <main class="container-fluid py-3">
-      <!-- from backend/delete.php -->
+
+      <!-- delete alert -->
       <?php if(!empty($_GET['from'])): ?>
         <?php if($_GET['from'] == 'delete'): ?>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -21,8 +22,27 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+        <?php elseif($_GET['from'] == 'deletecalendar'): ?>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            プランをカレンダーから削除しました。
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         <?php endif ?>
       <?php endif ?>
+
+      <!-- from backend/deletecalendar.php -->
+      <?php if(!empty($_GET['from'])): ?>
+      <?php if($_GET['from'] == 'delete'): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          プランを削除しました。
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php endif ?>
+    <?php endif ?>
     
 
       <!-- Cards -->
