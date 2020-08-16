@@ -10,7 +10,6 @@
       $plan = (int) $this -> escape($plan);
       $from = $this -> escape($from);
       $to = $this -> escape($to);
-      // $image = $this -> escape($image);  XSSはどうする？
 
       $stmt = $this->pdo -> prepare('INSERT INTO calendars (user_id, plan_id, from_date, to_date) VALUES(:user, :plan, :from, :to)');
       $stmt -> bindParam(':user', $user);
@@ -24,10 +23,14 @@
     }
 
 
-    // function get(string $id) {
-      // 登録したプランの表示用
-      // get_plan()を参考
-    // }
+    /*
+    function get(string $id) {
+      //登録したプランの表示用
+      //get_plan()を参考
+    }
+    */
+
+
     function get_calendar(string $id) {
 
       $id = (int) $this -> escape($id);
@@ -42,23 +45,19 @@
 
 
     function get_all(string $user, /*bool*/ $ascending=FALSE) {
-      // ユーザーの全カレンダーを取得
-      // get_by_user()を参考
-      // そのまま使いまわせなかったわ笑
 
-            $user = (int) $this -> escape($user);
+      $user = (int) $this -> escape($user);
 
-            if ($ascending) $stmt = $this->pdo -> prepare('SELECT * FROM calendars WHERE user_id = :user');
-            else $stmt = $this->pdo -> prepare('SELECT * FROM calendars WHERE user_id = :user ORDER BY calendar_id DESC');
+      if ($ascending) $stmt = $this->pdo -> prepare('SELECT * FROM calendars WHERE user_id = :user');
+      else $stmt = $this->pdo -> prepare('SELECT * FROM calendars WHERE user_id = :user ORDER BY calendar_id DESC');
 
-            $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
-            $stmt -> execute();
+      $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
+      $stmt -> execute();
 
-            return $stmt -> fetchAll();
-
-
+      return $stmt -> fetchAll();
 
     }
+
 
     function delete(string $id) {
 
@@ -70,7 +69,5 @@
       $stmt -> execute();
       
     }
-
-
   }
 ?>

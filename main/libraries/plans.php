@@ -108,8 +108,5 @@
       return $stmt -> fetchAll();
 
     }
-
-
-
   }
 ?>
