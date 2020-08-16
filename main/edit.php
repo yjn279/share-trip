@@ -55,13 +55,13 @@
         <form class="col-md-6" action="<?= $file ?>" method="POST" enctype="multipart/form-data">
           <div class="card-body">
 
-              <!-- alert -->
-              <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert" id="alert" style="display: none;">
-                プランを最適化しました。
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
+            <!-- alert -->
+            <div class="alert alert-warning alert-dismissible fade show mb-5" role="alert" id="alert" style="display: none;">
+              プランを最適化しました。
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
               
             <h5>タイトル</h5>
             <div class="input-group mb-5">
