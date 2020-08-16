@@ -47,7 +47,7 @@
 
   }
 
-  if (!empty($img_del))  $image = NULL;
+  if (!empty($_POST['img_del']))  $image = NULL;
 
 
   // プランの登録
