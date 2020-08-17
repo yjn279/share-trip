@@ -10,7 +10,7 @@ $(function(){
     
     $('.waypoint').each(function(index, waypoint){
       waypoints.push(waypoint.value);
-    })
+    });
 
 
     // Ajaxリクエスト
