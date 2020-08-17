@@ -17,8 +17,8 @@
 
       include __DIR__ . '/assets/header.php';
       $users = new Users();
-      $plans = new Plans();
-      $calendars = new Calendars();
+      $plans_inst = new Plans();
+      $calendars_inst = new Calendars();
 
 
       // リダイレクト
@@ -28,20 +28,23 @@
       // データの取得
 
       $id = $_GET['id'];
-      $mycalendars = $calendars -> get_calendar($id);
-      $plan_id = $mycalendars['plan_id'];
-      $from = $mycalendars['from_date'];
-      $to = $mycalendars['to_date'];
+      $calendars = $calendars_inst -> get_calendar($id);
+      $plan_id = $calendars['plan_id'];
+      $from = $calendars['from_date'];
+      $to = $calendars['to_date'];
 
-      $myplans = $plans -> get_plan($plan_id);
-      $title = $myplans['title'];
-      $schedule = $myplans['schedule'];
-      $comment = $myplans['comment'];
-      $image = $myplans['image'];
+      $plans = $plans_inst -> get_plan($plan_id);
+      $title = $plans['title'];
+      $schedule = $plans['schedule'];
+      $comment = $plans['comment'];
+      $image = $plans['image'];
+      $date = $plans['created_at'];
+      $name_id = $plans['user_id'];
+      $name = $users -> get_user($name_id);
 
 
       // sheduleを配列に分割
-      $split = $plans -> escape(' > ');
+      $split = $plans_inst -> escape(' > ');
       $schedule = explode($split, $schedule);
 
 
@@ -160,16 +163,16 @@
                     <span class="input-group-text">への旅行</span>
                   </div>
                 </div>
-
-                <div class="row">
+                <div class="row mb-2">
                   <div class="col">
-                    <input class="form-control bg-light mb-2" type="date" value="<?= $from ?>" readonly></input>
+                    <input class="form-control bg-light" type="date" value="<?= $from ?>" readonly></input>
                   </div>
                   <p> - </p>
                   <div class="col">
-                    <input class="form-control bg-light mb-5" type="date" value="<?= $to ?>" readonly></input>
+                    <input class="form-control bg-light" type="date" value="<?= $to ?>" readonly></input>
                   </div>
                 </div>
+                <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
 
 
                 <h5 class="card-text">おすすめの周辺のホテル・旅館はこちら</h5>
