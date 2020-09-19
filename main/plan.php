@@ -36,7 +36,7 @@
 
 
       // sheduleを配列に分割
-      $split = $users -> escape(' > ');
+      $split = $plans -> escape(' > ');
       $schedule = explode($split, $schedule);
 
 
@@ -53,12 +53,13 @@
               <!-- form -->
                 <form>
                   <h5>タイトル</h5>
-                  <div class="input-group mb-5">
+                  <div class="input-group mb-2">
                     <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
                     <div class="input-group-append">
                       <span class="input-group-text">への旅行</span>
                     </div>
                   </div>
+                  <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
                   <h5>スケジュール</h5>
                   <?php foreach ($schedule as $index => $place): ?>
                     <?php if ($index == 0): ?>
@@ -103,7 +104,6 @@
                   
                   <h5>コメント</h5>
                   <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
-                  <!-- <input class="btn btn-info btn-lg btn-block" type="submit" value="編集！"> -->
                 </form>
 
                 <?php if(!empty($_SESSION['user'])): ?>
