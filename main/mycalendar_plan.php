@@ -279,11 +279,15 @@
                     <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
                   </div>
                 <?php endif ?>
-                
+
                 <h5>コメント</h5>
                 <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
               </form>
-
+              <?php $froms = explode("-",$from);
+                    $tos = explode("-",$to);
+                    $tos1 = $tos[2] + 1;
+              ?>
+              <a class="btn btn-info btn-lg btn-block" href="https://www.google.com/calendar/event?action=TEMPLATE&text=<?= $title ?>への旅行&location=<?= $title ?>&dates=<?= $froms[0] ?><?= $froms[1] ?><?= $froms[2] ?>/<?= $tos[0] ?><?= $tos[1] ?><?= $tos1 ?>&details=<?= implode("→",$schedule)?>%20https://tb-220145.tech-base.net/mycalendar_plan.php?id=<?=$id?>%20powered%20by%20Share%20Trip">Googleカレンダーに追加</a>
 
 
 <!-- 削除ボタン -->
