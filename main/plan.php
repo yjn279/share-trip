@@ -163,6 +163,7 @@
                     </div>
                   <?php else: ?>
                     <a class="btn btn-info btn-lg btn-block" href="edit.php?id=<?= $id ?>">カスタマイズする</a>
+                    <button class="btn btn-info btn-lg btn-block" id="good">いいね！</button>
                   <?php endif ?>
                 <?php endif ?>
 
@@ -177,7 +178,7 @@
     <footer>
     </footer>
     <?php include __DIR__ . '/assets/scripts.php' ?>
-    <script src="/assets/scripts/calendar_modal.js">
-    </script>
+    <script src="/assets/scripts/calendar_modal.js"></script>
+    <script src="/assets/scripts/good.js"></script>
   </body>
 </html>
