@@ -7,7 +7,8 @@
     function get(int $user, int $plan) {
 
       $stmt = $this->pdo -> prepare('SELECT * FROM good WHERE user_id=:user AND plan_id=:plan');
-      $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
+      $stmt -> bindParam(':plan', $plan, PDO::PARAM_INT);
       $stmt -> execute();
     
       return $stmt -> fetch();
