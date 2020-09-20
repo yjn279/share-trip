@@ -12,14 +12,14 @@
 
   // テーブルの削除
 
-  $table = 'cost';
+  $table = 'cost_calendar';
   $sql ="DROP TABLE $table";
   $result = $pdo -> query($sql);
 
 
   // テーブル作成
 
-  $table = 'cost_calendar (
+  $table = 'cost_calendars (
     cost_calendar_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     calendar_id INT UNSIGNED NOT NULL,
     total INT UNSIGNED NOT NULL,
