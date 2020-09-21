@@ -47,6 +47,30 @@
         <label class="custom-file-label" for="customFile">画像を選択</label>
         </div>
         <p class="alert alert-warning mb-5">画像は3MBまでアップロードできます。</p>
+
+        <table class="table">
+<thead>
+<tr>
+<th scope="col">総予算</th>
+<th scope="col">ホテル</th>
+<th scope="col">飲食</th>
+<th scope="col">観光</th>
+<th scope="col">その他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row"><input class="form-control mb-3" id="total" type="number" name="total" required></input>円</th>
+<td><input class="form-control mb-3" id="hotel" type="number" name="hotel" required></input>円</td>
+<td><input class="form-control mb-3" id="food" type="number" name="food" required></input>円</td>
+<td><input class="form-control mb-3" id="tour" type="number" name="tour" required></input>円</td>
+<td><input class="form-control mb-3" id="others" type="number" name="others" required></input>円</td>
+</tr>
+
+</tbody>
+</table>
+
+
         <input class="btn btn-info btn-lg btn-block" type="submit" value="作成！">
       </form>
 
