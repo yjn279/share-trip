@@ -4,9 +4,8 @@ $(function(){
   $('#good').on('click', function() {
 
 
-    const user = 1;
-    const plan = 1;
-    var good = 1;
+    console.log(user);
+    console.log(plan);
     console.log(good);
 
 
@@ -41,8 +40,8 @@ $(function(){
 
     // Ajaxリクエストが失敗した時発動
     .fail(json => {
+      console.log('Ajax Failed.');
       console.log(json);
-      console.log('test_failed');
       /*
       // 通信失敗時の処理
       alert('ファイルの取得に失敗しました。');
