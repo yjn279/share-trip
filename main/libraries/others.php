@@ -43,10 +43,9 @@
 
       if (isset($id)) {
 
-        $sql = 'DELETE FROM good WHERE user_id=:user AND plan_id=:plan';
+        $sql = 'DELETE FROM good WHERE good_id=:id';
         $stmt = $this->pdo -> prepare($sql);
-        $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
-        $stmt -> bindParam(':plan', $plan, PDO::PARAM_INT);
+        $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
         $stmt -> execute();
 
         return True;
@@ -54,7 +53,6 @@
       } else {
         return False;
       }
-
 
     }
   }
