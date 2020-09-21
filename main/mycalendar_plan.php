@@ -19,6 +19,7 @@
       $users = new Users();
       $plans_inst = new Plans();
       $calendars_inst = new Calendars();
+      $cost_calendars_inst = new Cost_Calendars();
 
 
       // リダイレクト
@@ -41,6 +42,13 @@
       $date = $plans['created_at'];
       $name_id = $plans['user_id'];
       $name = $users -> get_user($name_id);
+
+      $cost_calendars_pick = $cost_calendars_inst -> get($id);
+      $budget = $cost_calendars_pick['total'];
+      $hotel = $cost_calendars_pick['hotel'];
+      $food = $cost_calendars_pick['food'];
+      $tour = $cost_calendars_pick['tour'];
+      $others = $cost_calendars_pick['others'];
 
 
       // sheduleを配列に分割
@@ -127,7 +135,7 @@
 
 
       <?php
-      $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=1072133978747396946";
+      $api_url = "https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=".urlencode($title)."&applicationId=1072133978747396946&affiliateId=1cab7601.42c0d3db.1cab7602.5db9b85c";
 
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, $api_url);
@@ -173,6 +181,28 @@
                   </div>
                 </div>
                 <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
+
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">総予算</th>
+      <th scope="col">ホテル</th>
+      <th scope="col">飲食</th>
+      <th scope="col">観光</th>
+      <th scope="col">その他</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><?= $budget?>円</th>
+      <td><?= $hotel?>円</td>
+      <td><?= $food?>円</td>
+      <td><?= $tour?>円</td>
+      <td><?= $others?>円</td>
+    </tr>
+
+  </tbody>
+</table>
 
 
                 <h5 class="card-text">おすすめの周辺のホテル・旅館はこちら</h5>
@@ -287,6 +317,10 @@
                     $tos = explode("-",$to);
                     $tos1 = $tos[2] + 1;
               ?>
+
+              <?= $budget ?>円
+
+
               <a class="btn btn-info btn-lg btn-block" href="https://www.google.com/calendar/event?action=TEMPLATE&text=<?= $title ?>への旅行&location=<?= $title ?>&dates=<?= $froms[0] ?><?= $froms[1] ?><?= $froms[2] ?>/<?= $tos[0] ?><?= $tos[1] ?><?= $tos1 ?>&details=<?= implode("→",$schedule)?>%20https://tb-220145.tech-base.net/mycalendar_plan.php?id=<?=$id?>%20powered%20by%20Share%20Trip">Googleカレンダーに追加</a>
 
 

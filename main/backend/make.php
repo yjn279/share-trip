@@ -5,6 +5,7 @@
   include __DIR__ . '/../libraries/main.php';
   include __DIR__ . '/../libraries/maps.php';
   $plans = new Plans();
+  $cost_plans = new Cost_Plans();
 
 
   // リダイレクト
@@ -19,6 +20,11 @@
   $waypoints = $_POST['waypoints'];
   $comment = $_POST['comment'];
 
+  $total = $_POST['total'];
+  $hotel = $_POST['hotel'];
+  $food = $_POST['food'];
+  $tour = $_POST['tour'];
+  $others = $_POST['others'];
 
   // スケジュールを作成
 
@@ -51,9 +57,10 @@
 
 
   // プランの登録
-  $id = $plans -> make($user, $title, $schedule, $comment, $image);
+  $make_id = $plans -> make($user, $title, $schedule, $comment, $image);
+  $Cost_plan_id = $cost_plans -> make($make_id, $total, $hotel, $food, $tour, $others);
 
-  
+
   // リダイレクト
   redirect("../plan.php?id=$id");
 
