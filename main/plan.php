@@ -210,21 +210,15 @@
                     </div>
                   <?php else: ?>
                     <a class="btn btn-info btn-lg btn-block" href="edit.php?id=<?= $id ?>">カスタマイズする</a>
-                    <button class="btn btn-info btn-lg btn-block" id="good">いいね！</button>
+                    <button class="btn btn-info btn-lg btn-block" id="good_btn">いいね！</button>
                     <?php
                       // いいねの取得
                       $user = $_SESSION['user'];
                       $good_id = $good -> get((int) $user, (int) $id);
                     ?>
-                    <script>
-                      const user = <?= $user ?>;
-                      const plan = <?= $id ?>;
-                      <?php if (isset($good_id)): ?>
-                        var good = true;
-                      <?php else: ?>
-                        var good = false;
-                      <?php endif ?>
-                    </script>
+                    <p id="user" hidden><?= $user ?></p>
+                    <p id="plan" hidden><?= $id ?></p>
+                    <p id="good" hidden><?= $good_id ?></p>
                   <?php endif ?>
                 <?php endif ?>
                  <!-- <a class="btn btn-lg btn-block border-info text-info mt-4" href="timeline.php">登録する</a> -->

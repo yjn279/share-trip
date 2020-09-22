@@ -1,12 +1,20 @@
 $(function(){
 
 
-  $('#good').on('click', function() {
+  const btn = $('#good_btn');  // button
+  const user = $('#user').text();  // user_id
+  const plan = $('#plan').text();  // plan_id
+  const good_id = $('#good').text();  // good_id
+  var good = 0;  // good
 
 
-    console.log(user);
-    console.log(plan);
-    console.log(good);
+  if (good_id >= 0) {
+    good = 1;
+    btn.removeClass('btn-info').addClass('btn-danger');
+  }
+  
+  
+  $('#good_btn').on('click', function() {
 
 
     // Ajaxリクエスト
@@ -28,7 +36,13 @@ $(function(){
       console.log(json);
 
       if (json['status']) {
-        console.log(json['log']);
+        if (json['log'] === 'added') {
+          good = 1;
+          btn.removeClass('btn-info').addClass('btn-danger');
+        } else {
+          good = 0;
+          btn.removeClass('btn-danger').addClass('btn-info');
+        }
       }
 
       else {
