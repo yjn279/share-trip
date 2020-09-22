@@ -22,7 +22,7 @@ $(function(){
         waypoints: waypoints
       },
       dataType: 'json'  // 受け取るデータの型
-    })
+    })  // セミコロンいるよね？
 
 
     // Ajaxリクエストが成功した時発動

@@ -18,6 +18,7 @@
       $users = new Users();
       $plans = new Plans();
       $good = new Good();
+      $cost_calendars_inst = new Cost_Plans();
 
 
       // リダイレクト
@@ -34,6 +35,13 @@
       $date = $plan['created_at'];
       $name_id = $plan['user_id'];
       $name = $users -> get_user($name_id);
+
+      $cost_calendars_pick = $cost_calendars_inst -> get($id);
+      $budget = $cost_calendars_pick['total'];
+      $hotel = $cost_calendars_pick['hotel'];
+      $food = $cost_calendars_pick['food'];
+      $tour = $cost_calendars_pick['tour'];
+      $others = $cost_calendars_pick['others'];
 
 
       // sheduleを配列に分割
@@ -61,6 +69,28 @@
                     </div>
                   </div>
                   <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
+                  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">総予算</th>
+        <th scope="col">ホテル</th>
+        <th scope="col">飲食</th>
+        <th scope="col">観光</th>
+        <th scope="col">その他</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"><?= $budget?>円</th>
+        <td><?= $hotel?>円</td>
+        <td><?= $food?>円</td>
+        <td><?= $tour?>円</td>
+        <td><?= $others?>円</td>
+      </tr>
+
+    </tbody>
+  </table>
+
                   <h5>スケジュール</h5>
                   <?php foreach ($schedule as $index => $place): ?>
                     <?php if ($index == 0): ?>
@@ -102,7 +132,7 @@
                       <input class="form-control bg-light" type="text" value="<?= $place ?>" readonly>
                     </div>
                   <?php endif ?>
-                  
+                  <?= $budget ?>
                   <h5>コメント</h5>
                   <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
                 </form>
@@ -116,7 +146,7 @@
                     <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">出発日・帰宅日登録</h4>
+                        <h4 class="modal-title" id="myModalLabel">出発日・帰宅日・予算登録</h4>
                       </div>
                       <div class="modal-body">
                         <form action="backend/calendar.php?plan=<?= $id ?>" method="POST">
@@ -126,6 +156,22 @@
                           <br>
                           <label>帰宅日</label>
                           <input id='arrival' type="date" name="to" value="<?php echo date('Y-m-d');  ?>" required>
+                          <br>
+                          <br>
+
+                          <label>予算総額</label>
+                          <input id='allbudget' type="number" name="budget" onchange="myfunc(this.value)" required>円<br>
+                          <!-- <p id="abiko">abiko</p><br> -->
+                          <label>ホテル予算</label>
+                          <input id='hotelbudget' type="number" name="hotel" required>円<br>
+                          <label>飲食予算</label>
+                          <input id='drinkbudget' type="number" name="food" required>円<br>
+                          <label>観光予算</label>
+                          <input id='tourbudget' type="number" name="tour" required>円<br>
+                          <label>その他予算</label>
+                          <input id='otherbudget' type="number" name="others" required>円<br>
+
+
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
