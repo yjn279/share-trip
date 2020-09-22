@@ -58,10 +58,9 @@
         <?php endif ?>
             <div class="col-md-6 mx-md-auto">
               <div class="card-body">
-
               <!-- form -->
                 <form>
-                  <h5>タイトル</h5>
+                  <h5>タイトル<i class="far fa-bookmark text-secondary ml-2" id="good_btn"></i></h5>
                   <div class="input-group mb-2">
                     <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
                     <div class="input-group-append">
@@ -70,27 +69,25 @@
                   </div>
                   <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
                   <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">総予算</th>
-        <th scope="col">ホテル</th>
-        <th scope="col">飲食</th>
-        <th scope="col">観光</th>
-        <th scope="col">その他</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row"><?= $budget?>円</th>
-        <td><?= $hotel?>円</td>
-        <td><?= $food?>円</td>
-        <td><?= $tour?>円</td>
-        <td><?= $others?>円</td>
-      </tr>
-
-    </tbody>
-  </table>
-
+                    <thead>
+                      <tr>
+                        <th scope="col">総予算</th>
+                        <th scope="col">ホテル</th>
+                        <th scope="col">飲食</th>
+                        <th scope="col">観光</th>
+                        <th scope="col">その他</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><?= $budget?>円</th>
+                        <td><?= $hotel?>円</td>
+                        <td><?= $food?>円</td>
+                        <td><?= $tour?>円</td>
+                        <td><?= $others?>円</td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <h5>スケジュール</h5>
                   <?php foreach ($schedule as $index => $place): ?>
                     <?php if ($index == 0): ?>
@@ -210,7 +207,6 @@
                     </div>
                   <?php else: ?>
                     <a class="btn btn-info btn-lg btn-block" href="edit.php?id=<?= $id ?>">カスタマイズする</a>
-                    <button class="btn btn-info btn-lg btn-block" id="good_btn">いいね！</button>
                     <?php
                       // いいねの取得
                       $user = $_SESSION['user'];

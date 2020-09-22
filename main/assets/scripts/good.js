@@ -10,7 +10,7 @@ $(function(){
 
   if (good_id >= 0) {
     good = 1;
-    btn.removeClass('btn-info').addClass('btn-danger');
+    btn.removeClass('far').addClass('fas');
   }
   
   
@@ -38,10 +38,10 @@ $(function(){
       if (json['status']) {
         if (json['log'] === 'added') {
           good = 1;
-          btn.removeClass('btn-info').addClass('btn-danger');
+          btn.removeClass('far').addClass('fas');
         } else {
           good = 0;
-          btn.removeClass('btn-danger').addClass('btn-info');
+          btn.removeClass('fas').addClass('far');
         }
       }
 
