@@ -36,6 +36,9 @@
       $name_id = $plan['user_id'];
       $name = $users -> get_user($name_id);
 
+      $good_num = $good -> get_by_plan($id);
+      $good_num = count($good_num);
+
       $cost_calendars_pick = $cost_calendars_inst -> get($id);
       $budget = $cost_calendars_pick['total'];
       $hotel = $cost_calendars_pick['hotel'];
@@ -60,7 +63,11 @@
               <div class="card-body">
               <!-- form -->
                 <form>
-                  <h5>タイトル<i class="far fa-bookmark text-secondary ml-2" id="good_btn"></i></h5>
+                  <h5>
+                    タイトル
+                    <i class="far fa-bookmark text-secondary ml-3 mr-2" id="good_btn"></i>
+                    <small id="good_num"><?= $good_num ?></small>
+                  </h5>
                   <div class="input-group mb-2">
                     <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
                     <div class="input-group-append">
@@ -216,6 +223,8 @@
                     <p id="plan" hidden><?= $id ?></p>
                     <p id="good" hidden><?= $good_id ?></p>
                   <?php endif ?>
+                <?php else: ?>
+                  <p id="good" hidden>-1</p>
                 <?php endif ?>
                  <!-- <a class="btn btn-lg btn-block border-info text-info mt-4" href="timeline.php">登録する</a> -->
                 <a class="btn btn-lg btn-block border-info text-info mt-4" href="timeline.php">戻る</a>

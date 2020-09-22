@@ -5,6 +5,9 @@ $(function(){
   const user = $('#user').text();  // user_id
   const plan = $('#plan').text();  // plan_id
   const good_id = $('#good').text();  // good_id
+  const good_num = $('#good_num');  // good num
+
+  var num = good_num.text(); // num
   var good = 0;  // good
 
 
@@ -38,9 +41,13 @@ $(function(){
       if (json['status']) {
         if (json['log'] === 'added') {
           good = 1;
+          num++;
+          good_num.text(num);
           btn.removeClass('far').addClass('fas');
         } else {
           good = 0;
+          num--;
+          good_num.text(num);
           btn.removeClass('fas').addClass('far');
         }
       }
