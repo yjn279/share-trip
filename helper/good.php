@@ -12,7 +12,7 @@
 
   // テーブルの削除
 
-  $table = 'good';
+  $table = 'bookmark';
   $sql ="DROP TABLE $table";
   $result = $pdo -> query($sql);
 

@@ -2,21 +2,6 @@
 
 
   class Good extends DataBase {
-
-
-    function get(int $user, int $plan) {
-
-      $stmt = $this->pdo -> prepare('SELECT good_id FROM good WHERE user_id=:user AND plan_id=:plan');
-      $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
-      $stmt -> bindParam(':plan', $plan, PDO::PARAM_INT);
-      $stmt -> execute();
-      
-      $id = $stmt -> fetch();
-
-      if (is_array($id)) return (int) $id['good_id'];
-      else return -1;
-    
-    }
     
 
     function add(int $user, int $plan) {
@@ -56,6 +41,51 @@
       } else {
         return False;
       }
+
+    }
+
+
+    function get(int $user, int $plan) {
+
+      $stmt = $this->pdo -> prepare('SELECT good_id FROM good WHERE user_id=:user AND plan_id=:plan');
+      $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
+      $stmt -> bindParam(':plan', $plan, PDO::PARAM_INT);
+      $stmt -> execute();
+      
+      $id = $stmt -> fetch();
+
+      if (is_array($id)) return (int) $id['good_id'];
+      else return -1;
+    
+    }
+
+
+    function get_by_user(string $id, /*bool*/ $ascending=FALSE) {
+
+      $id = (int) $this -> escape($id);
+
+      if ($ascending) $sql ='SELECT * FROM good WHERE user_id=:id';
+      else $sql = 'SELECT * FROM good WHERE user_id=:id ORDER BY good_id DESC';
+
+      $stmt = $this->pdo -> prepare($sql);
+      $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt -> execute();
+
+      return $stmt -> fetchAll();
+
+    }
+
+
+    function get_by_plan(string $id) {
+
+      $id = (int) $this -> escape($id);
+
+      $sql = 'SELECT * FROM good WHERE plan_id=:id';
+      $stmt = $this->pdo -> prepare($sql);
+      $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt -> execute();
+
+      return $stmt -> fetchAll();
 
     }
   }
