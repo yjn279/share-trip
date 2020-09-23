@@ -20,11 +20,13 @@
   $waypoints = $_POST['waypoints'];
   $comment = $_POST['comment'];
 
+
   $total = $_POST['total'];
   $hotel = $_POST['hotel'];
   $food = $_POST['food'];
   $tour = $_POST['tour'];
   $others = $_POST['others'];
+  $profit = $_POST['profit'];
 
   // スケジュールを作成
 
@@ -57,12 +59,12 @@
 
 
   // プランの登録
-  $make_id = $plans -> make($user, $title, $schedule, $comment, $image);
+  $make_id = $plans -> make($user, $title, $schedule, $comment, $image, $profit);
   $Cost_plan_id = $cost_plans -> make($make_id, $total, $hotel, $food, $tour, $others);
 
 
   // リダイレクト
-  redirect("../plan.php?id=$id");
+  // redirect("../plan.php?id=$id");
 
 
 ?>
