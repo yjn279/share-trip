@@ -37,6 +37,9 @@
       $name_id = $plan['user_id'];
       $name = $users -> get_user($name_id);
 
+      $good_num = $good -> get_by_plan($id);
+      $good_num = count($good_num);
+
       $cost_calendars_pick = $cost_calendars_inst -> get($id);
       $budget = $cost_calendars_pick['total'];
       $hotel = $cost_calendars_pick['hotel'];
@@ -50,12 +53,6 @@
       $schedule = explode($split, $schedule);
 
 
-      // いいねの取得
-      $user = $_SESSION['user'];
-      $good_id = $good -> get((int) $user, (int) $id);
-      if (isset($good_id)) $display = 'good';
-
-
     ?>
 
     <main class="card bg-light border-0 p-3">
@@ -65,10 +62,13 @@
         <?php endif ?>
             <div class="col-md-6 mx-md-auto">
               <div class="card-body">
-
               <!-- form -->
                 <form>
-                  <h5>タイトル</h5>
+                  <h5>
+                    タイトル
+                    <i class="far fa-bookmark text-secondary ml-3 mr-2" id="good_btn"></i>
+                    <small id="good_num"><?= $good_num ?></small>
+                  </h5>
                   <div class="input-group mb-2">
                     <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
                     <div class="input-group-append">
@@ -77,27 +77,25 @@
                   </div>
                   <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
                   <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">総予算</th>
-        <th scope="col">ホテル</th>
-        <th scope="col">飲食</th>
-        <th scope="col">観光</th>
-        <th scope="col">その他</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row"><?= $budget?>円</th>
-        <td><?= $hotel?>円</td>
-        <td><?= $food?>円</td>
-        <td><?= $tour?>円</td>
-        <td><?= $others?>円</td>
-      </tr>
-
-    </tbody>
-  </table>
-
+                    <thead>
+                      <tr>
+                        <th scope="col">総予算</th>
+                        <th scope="col">ホテル</th>
+                        <th scope="col">飲食</th>
+                        <th scope="col">観光</th>
+                        <th scope="col">その他</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><?= $budget?>円</th>
+                        <td><?= $hotel?>円</td>
+                        <td><?= $food?>円</td>
+                        <td><?= $tour?>円</td>
+                        <td><?= $others?>円</td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <h5>スケジュール</h5>
                   <?php foreach ($schedule as $index => $place): ?>
                     <?php if ($index == 0): ?>
@@ -147,6 +145,7 @@
                 <?php if(!empty($_SESSION['user'])): ?>
 
                   <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal">カレンダー登録</button>
+                  
 
                   <!-- ボタン・リンククリック後に表示される画面の内容 -->
                   <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -217,10 +216,18 @@
                     </div>
                   <?php else: ?>
                     <a class="btn btn-info btn-lg btn-block" href="edit.php?id=<?= $id ?>">カスタマイズする</a>
-                    <button class="btn btn-info btn-lg btn-block <?= $display ?>" id="good">いいね！</button>
+                    <?php
+                      // いいねの取得
+                      $user = $_SESSION['user'];
+                      $good_id = $good -> get((int) $user, (int) $id);
+                    ?>
+                    <p id="user" hidden><?= $user ?></p>
+                    <p id="plan" hidden><?= $id ?></p>
+                    <p id="good" hidden><?= $good_id ?></p>
                   <?php endif ?>
+                <?php else: ?>
+                  <p id="good" hidden>-1</p>
                 <?php endif ?>
-
                  <!-- <a class="btn btn-lg btn-block border-info text-info mt-4" href="timeline.php">登録する</a> -->
                 <a class="btn btn-lg btn-block border-info text-info mt-4" href="timeline.php">戻る</a>
               </div>
@@ -232,8 +239,7 @@
     <footer>
     </footer>
     <?php include __DIR__ . '/assets/scripts.php' ?>
-    <script src="/assets/scripts/calendar_modal.js">
-    </script>
+    <script src="/assets/scripts/calendar_modal.js"></script>
     <script src="/assets/scripts/good.js"></script>
   </body>
 </html>
