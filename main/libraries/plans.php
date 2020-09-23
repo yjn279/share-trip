@@ -42,20 +42,22 @@ class Cost_Plans extends DataBase {
   class Plans extends DataBase {
 
 
-    function make(string $user, string $title, string $schedule, string $comment=NULL, string $image=NULL) {
+    function make(string $user, string $title, string $schedule, string $comment=NULL, string $image=NULL, string $profit) {
 
       $user = (int) $this -> escape($user);
       $title = $this -> escape($title);
       $schedule = $this -> escape($schedule);
       $comment = $this -> escape($comment);
+      $profit = $this -> escape($profit);
       // $image = $this -> escape($image);  XSSはどうする？
 
-      $stmt = $this->pdo -> prepare('INSERT INTO plans (title, schedule, comment, image, user_id) VALUES(:title, :schedule, :comment, :image, :user)');
+      $stmt = $this->pdo -> prepare('INSERT INTO plans (title, schedule, comment, image, user_id, profit) VALUES(:title, :schedule, :comment, :image, :user, :profit)');
       $stmt -> bindParam(':title', $title);
       $stmt -> bindParam(':schedule', $schedule);
       $stmt -> bindParam(':comment', $comment);
       $stmt -> bindParam(':image', $image);
       $stmt -> bindParam(':user', $user, PDO::PARAM_INT);
+      $stmt -> bindParam(':profit', $profit);
       $stmt -> execute();  // 実行が失敗した場合のエラー処理
 
       return (int) $this->pdo -> lastInsertId();

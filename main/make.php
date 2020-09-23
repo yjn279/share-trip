@@ -69,6 +69,14 @@
 
 </tbody>
 </table>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">プラン販売希望金額</th>
+<th scope="col"><input class="form-control mb-3" id="others" type="number" name="profit" required></input>円</th>
+</tr>
+</thead>
+</table>
 
 
         <input class="btn btn-info btn-lg btn-block" type="submit" value="作成！">
