@@ -165,6 +165,13 @@
       $hotelImageUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'];
       $hotelName = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelName'];
 
+      $roomImageUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['roomImageUrl'];
+
+      $planName = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['planName'];
+      // var_dump($planName);
+      $roomName = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['roomName'];
+
+
         ?>
 
 
@@ -240,15 +247,16 @@
                       <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
 
                           <div class="carousel-inner">
-                              <div class="carousel-item active zoomIn filter">
+                              <div class="carousel-item active">
                                 <a class="card border-0 text-reset shadow-sm" href=<?= $hotelInformationUrl ?> target="_blank" rel="noopener noreferrer" >
+                                  <div class="zoomIn filter">
                                   <img src="<?= $hotelImageUrl ?>" alt="..." style="width: 100%;
                                               height: 270px;
                                               object-fit: cover;
 
 
                                               ">
-
+                                            </div>
                                             <div class="carousel-caption d-none d-md-block">
                                               <h5><?= $hotelName ?></h5>
                                               <p>大人１人 <?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円から </p>
@@ -264,11 +272,20 @@
                                     <h4 class="modal-title" id="myModalLabel"><?= $hotelName ?></h4>
                                   </div>
                                   <div class="modal-body">
-                                    
+
                                       <label><?= $from?>から<?=$to?>の利用</label>
 
                                       <br>
                                       <br>
+                                      <div class="card w-auto">
+                                      <!-- <div class="card w-auto" style="width: 18rem;"> -->
+                                          <img src="<?= $roomImageUrl ?>" class="card-img-top">
+                                          <div class="card-body">
+                                            <h5 class="card-title"><?= $roomName ?></h5>
+                                            <p class="card-text"><?= $planName?></p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                          </div>
+                                        </div>
                                       <label>帰宅日</label>
                                       <input id='arrival' type="date" name="to" value="<?php echo date('Y-m-d');  ?>" required>
                                       <br>
