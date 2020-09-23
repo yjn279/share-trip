@@ -38,6 +38,7 @@
       $title = $plans['title'];
       $schedule = $plans['schedule'];
       $comment = $plans['comment'];
+      $profit = $plans['profit'];
       $image = $plans['image'];
       $date = $plans['created_at'];
       $name_id = $plans['user_id'];
@@ -147,6 +148,23 @@
       curl_close($ch);
       $result = json_decode($json, true);
 
+      $latitude = $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['latitude'];
+      $longitude = $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['longitude'];
+
+      $api_url2 = "https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=".urlencode($from)."&checkoutDate=".urlencode($to)."&latitude=".urlencode($latitude)."&longitude=".urlencode($longitude)."&affiliateId=1cab7601.42c0d3db.1cab7602.5db9b85c&applicationId=1072133978747396946";
+      $ch1 = curl_init();
+      curl_setopt($ch1, CURLOPT_URL, $api_url2);
+      curl_setopt($ch1, CURLOPT_HEADER, false);
+      curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch1, CURLOPT_TIMEOUT, 60);
+      $jsons = array();
+      $jsons = curl_exec($ch1);
+      curl_close($ch1);
+      $result2 = json_decode($jsons, true);
+      $hotelInformationUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"];
+      $hotelImageUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'];
+      $hotelName = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelName'];
+
         ?>
 
 
@@ -223,8 +241,8 @@
 
                           <div class="carousel-inner">
                               <div class="carousel-item active zoomIn filter">
-                                <a class="card border-0 text-reset shadow-sm" href=<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?> target="_blank" rel="noopener noreferrer" >
-                                  <img src="<?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%;
+                                <a class="card border-0 text-reset shadow-sm" href=<?= $hotelInformationUrl ?> target="_blank" rel="noopener noreferrer" >
+                                  <img src="<?= $hotelImageUrl ?>" alt="..." style="width: 100%;
                                               height: 270px;
                                               object-fit: cover;
 
@@ -232,10 +250,52 @@
                                               ">
 
                                             <div class="carousel-caption d-none d-md-block">
-                                              <h5><?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelName'] ?></h5>
+                                              <h5><?= $hotelName ?></h5>
                                               <p>大人１人 <?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円から </p>
                                               </div>
                               </a>
+                              <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal">このホテルを予約</button>
+
+                              <!-- ボタン・リンククリック後に表示される画面の内容 -->
+                              <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel"><?= $hotelName ?></h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    
+                                      <label><?= $from?>から<?=$to?>の利用</label>
+
+                                      <br>
+                                      <br>
+                                      <label>帰宅日</label>
+                                      <input id='arrival' type="date" name="to" value="<?php echo date('Y-m-d');  ?>" required>
+                                      <br>
+                                      <br>
+
+                                      <label>予算総額</label>
+                                      <input id='allbudget' type="number" name="budget" onchange="myfunc(this.value)" required>円<br>
+                                      <!-- <p id="abiko">abiko</p><br> -->
+                                      <label>ホテル予算</label>
+                                      <input id='hotelbudget' type="number" name="hotel" required>円<br>
+                                      <label>飲食予算</label>
+                                      <input id='drinkbudget' type="number" name="food" required>円<br>
+                                      <label>観光予算</label>
+                                      <input id='tourbudget' type="number" name="tour" required>円<br>
+                                      <label>その他予算</label>
+                                      <input id='otherbudget' type="number" name="others" required>円<br>
+
+
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                                      <button type="submit" class="btn btn-info" >登録</button>
+                                    </form>
+                                  </div>
+                                </div>
+                                </div>
+                              </div>
                             </div>
 
                             <?php
@@ -279,7 +339,7 @@
               <!-- 右左ボタン -->
 
 <!-- ここまでホテルサジェスト -->
-
+    <?= $profit?>
               <h5>スケジュール</h5>
                 <?php foreach ($schedule as $index => $place): ?>
                   <?php if ($index == 0): ?>
