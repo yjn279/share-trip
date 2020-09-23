@@ -33,6 +33,9 @@
       $plan_id = $calendars['plan_id'];
       $from = $calendars['from_date'];
       $to = $calendars['to_date'];
+      $froms = explode("-",$from);
+      $tos = explode("-",$to);
+      $tos1 = $tos[2] + 1;
 
       $plans = $plans_inst -> get_plan($plan_id);
       $title = $plans['title'];
@@ -167,11 +170,7 @@
                 <h5>
                   タイトル
                   <small>
-                    <a class="float-right text-secondary mt-1" href="https://www.google.com/calendar/event?
-                    action=TEMPLATE&text=<?= $title ?>への旅行&
-                    location=<?= $title ?>&
-                    dates=<?= $froms[0] ?><?= $froms[1] ?><?= $froms[2] ?>/<?= $tos[0] ?><?= $tos[1] ?><?= $tos1 ?>&
-                    details=<?= implode("→",$schedule)?>%20https://tb-220145.tech-base.net/mycalendar_plan.php?id=<?=$id?>%20powered%20by%20Share%20Trip">
+                    <a class="float-right text-secondary mt-1" href="https://www.google.com/calendar/event?action=TEMPLATE&text=<?= $title ?>への旅行&location=<?= $title ?>&dates=<?= $froms[0] ?><?= $froms[1] ?><?= $froms[2] ?>/<?= $tos[0] ?><?= $tos[1] ?><?= $tos1 ?>&details=<?= implode("→",$schedule)?>%20https://tb-220145.tech-base.net/mycalendar_plan.php?id=<?=$id?>%20powered%20by%20Share%20Trip">
                       Googleカレンダーに追加
                       <i class="far fa-calendar-plus ml-2 mr-1"></i>
                     </a>
@@ -325,12 +324,6 @@
                 <h5>コメント</h5>
                 <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
               </form>
-              <?php
-                $froms = explode("-",$from);
-                $tos = explode("-",$to);
-                $tos1 = $tos[2] + 1;
-              ?>
-
 
 <!-- 削除ボタン -->
 
