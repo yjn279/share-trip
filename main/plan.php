@@ -145,6 +145,7 @@
                 <?php if(!empty($_SESSION['user'])): ?>
 
                   <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal">カレンダー登録</button>
+                  
 
                   <!-- ボタン・リンククリック後に表示される画面の内容 -->
                   <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
