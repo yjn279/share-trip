@@ -88,5 +88,39 @@
       return $stmt -> fetchAll();
 
     }
+
+
+    function bookmarked(string $id) {
+
+      $id = (int) $this -> escape($id);
+
+      // ユーザーが作成したすべてのプランを取得
+
+      $stmt = $this->pdo -> prepare('SELECT plan_id FROM plans WHERE user_id=:id');
+      $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt -> execute();
+      $plans = $stmt -> fetchAll();
+
+      // ブックマークされたプラン数をカウント
+
+      $bookmarked = 0;
+      
+      foreach ($plans as $plan) {
+
+        $id = $plan['plan_id'];
+
+        $sql ='SELECT count(*) FROM good WHERE plan_id=:id';
+        $stmt = $this->pdo -> prepare($sql);
+        $stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt -> execute();
+        $num = $stmt -> fetch();
+        $num = (int) $num['count(*)'];
+        $bookmarked += $num;
+
+      }
+
+      return $bookmarked;
+
+    }
   }
 ?>
