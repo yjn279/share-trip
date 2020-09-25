@@ -193,7 +193,7 @@
           <?php endif ?>
           <div class="col-md-7 mt-5">
             <!-- form -->
-            <form>
+            <form action="backend/mycalendar_plan.php" method="POST">
               <h5>
                 タイトル
                 <small>
@@ -243,26 +243,26 @@
 </table>
 
 
-                <h5 class="card-text">おすすめの周辺のホテル・旅館はこちら</h5>
-         <!-- ここからホテルサジェスト -->
-                      <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
+  <h5 class="card-text">おすすめの周辺のホテル・旅館はこちら</h5>
+<!-- ここからホテルサジェスト -->
+        <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
 
-                          <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <a class="card border-0 text-reset shadow-sm" href=<?= $hotelInformationUrl ?> target="_blank" rel="noopener noreferrer" >
-                                  <div class="zoomIn filter">
-                                  <img src="<?= $hotelImageUrl ?>" alt="..." style="width: 100%;
-                                              height: 270px;
-                                              object-fit: cover;
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a class="card border-0 text-reset shadow-sm" href=<?= $hotelInformationUrl ?> target="_blank" rel="noopener noreferrer" >
+                    <div class="zoomIn filter">
+                    <img src="<?= $hotelImageUrl ?>" alt="..." style="width: 100%;
+                                height: 270px;
+                                object-fit: cover;
 
 
-                                              ">
-                                            </div>
-                                            <div class="carousel-caption d-none d-md-block">
-                                              <h5><?= $hotelName ?></h5>
-                                              <p>大人１人 <?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円から </p>
-                                              </div>
-                              </a>
+                                ">
+                              </div>
+                              <div class="carousel-caption d-none d-md-block">
+                                <h5><?= $hotelName ?></h5>
+                                <p>大人１人 <?= $result['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円から </p>
+                                </div>
+                </a>
                               <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal">このホテルを予約</button>
 
                               <!-- ボタン・リンククリック後に表示される画面の内容 -->
@@ -287,7 +287,9 @@
                                             <h5 class="card-title"><?= $roomName ?></h5>
                                             <p class="card-text"><?= $planName?></p>
                                             <p class="card-text"><?= $rakutenCharge?>円</p>
-                                            <a href="<?= $reserveUrl ?>" class="btn btn-primary">予約する</a>
+                                              <input type="hidden" name="plan" value="<?= $plan_id ?>">
+                                              <input type="hidden" name="url" value="<?= $reserveUrl ?>">
+                                              <button type="submit" class="btn btn-primary">予約する</button>
                                           </div>
 
                                         </div>
@@ -384,7 +386,6 @@
               <!-- 右左ボタン -->
 
 <!-- ここまでホテルサジェスト -->
-    <?= $profit?>
               <h5>スケジュール</h5>
                 <?php foreach ($schedule as $index => $place): ?>
                   <?php if ($index == 0): ?>
