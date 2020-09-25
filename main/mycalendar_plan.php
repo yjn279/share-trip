@@ -162,55 +162,57 @@
             <h5 class="mt-5">おすすめの周辺のホテル・旅館はこちら</h5>
             <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
               <div class="carousel-inner">
-                <?php foreach($hotels as $index => $resulteach): ?>$hotel
-                  <?php //$hotel = $hotel[0]['hotel'] // [1] ?>
-                  <?php if (!empty($resulteach['hotel'][0]['hotelBasicInfo']['hotelName'])): ?>
-                    <?php if ($index == 0): ?>
+                <?php foreach($hotels as $index1 => $hotel): ?>
+                  <?php $hotel = $hotel['hotel'] ?>
+                  <?php if (!empty($hotel[0]['hotelBasicInfo']['hotelName'])): ?>
+                    <?php if ($index1 == 0): ?>
                       <div class="carousel-item zoomIn filter active">
                     <?php else: ?>
                       <div class="carousel-item zoomIn filter">
                     <?php endif ?>
-                      <a class="card border-0 text-reset shadow-sm" href="<?= $resulteach['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"] ?>" target="_blank" rel="noopener noreferrer">
+                      <a class="card border-0 text-reset shadow-sm" href="<?= $hotel[0]['hotelBasicInfo']["hotelInformationUrl"] ?>" target="_blank" rel="noopener noreferrer">
                         <div class="zoomIn filter">
-                          <img src="<?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%; height: 270px; object-fit: cover;">
+                          <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%; height: 270px; object-fit: cover;">
                         </div>
                         <div class="carousel-caption d-none d-md-block">
-                          <h5><?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelName'] ?></h5>
-                          <p>大人１人 <?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
+                          <h5><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h5>
+                          <p>大人１人 <?= $hotel[0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
                         </div>
                       </a>
-                      <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal<?= $index ?>">このホテルを予約</button>
+                      <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal<?= $index1 ?>">このホテルを予約</button>
 
                       <!-- ボタン・リンククリック後に表示される画面の内容 -->
-                      <?php //foreach ($hotel as $room): ?>
-                        <?php //$room = $room['roomInfo'] ?>
-                      <?php //endforeach ?>
-                      <div class="modal fade" id="testModal<?= $index ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title" id="myModalLabel"><?= $resulteach['hotel'][0] ?></h4>
-                            </div>
-                            <div class="modal-body">
-                              <label class="mb-3"><?= $from ?>から<?= $to ?>の利用</label>
-                              <div class="card w-auto">
-                                <img src="<?= $roomImageUrl ?>" class="card-img-top">
-                                <div class="card-body">
-                                  <h5 class="card-title"><?= $roomName ?></h5>
-                                  <p class="card-text"><?= $planName?></p>
-                                  <p class="card-text"><?= $rakutenCharge?>円</p>
-                                  <input type="hidden" name="plan" value="<?= $plan_id ?>">
-                                  <input type="hidden" name="url" value="<?= $reserveUrl ?>">
-                                  <button type="submit" class="btn btn-primary">予約する</button>
+                      <?php foreach ($hotel as $index2 => $room): ?>
+                        <?php if ($index2 > 0): ?>
+                          <?php $room = $room['roomInfo'] ?>
+                          <div class="modal fade" id="testModal<?= $index1 ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="myModalLabel"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
+                                </div>
+                                <div class="modal-body">
+                                  <label class="mb-3"><?= $from ?>から<?= $to ?>の利用</label>
+                                  <div class="card w-auto">
+                                    <img src="<?= $hotel[0]['hotelBasicInfo']['roomImageUrl'] ?>" class="card-img-top">
+                                    <div class="card-body">
+                                      <h5 class="card-title"><?= $room[0]['roomBasicInfo']['roomName'] ?></h5>
+                                      <p class="card-text"><?= $room[0]['roomBasicInfo']['planName'] ?></p>
+                                      <p class="card-text"><?= $room[1]['dailyCharge']['rakutenCharge'] ?>円</p>
+                                      <input type="hidden" name="plan" value="<?= $plan_id ?>">
+                                      <input type="hidden" name="url" value="<?= $reserveUrl ?>">
+                                      <button type="submit" class="btn btn-primary">予約する</button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                                 </div>
                               </div>
                             </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                            </div>
                           </div>
-                        </div>
-                      </div>
+                        <?php endif ?>
+                      <?php endforeach ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
