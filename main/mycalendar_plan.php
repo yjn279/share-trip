@@ -182,16 +182,16 @@
                       <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal<?= $index1 ?>">このホテルを予約</button>
 
                       <!-- ボタン・リンククリック後に表示される画面の内容 -->
-                      <?php foreach ($hotel as $index2 => $room): ?>
-                        <?php if ($index2 > 0): ?>
-                          <?php $room = $room['roomInfo'] ?>
-                          <div class="modal fade" id="testModal<?= $index1 ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title" id="myModalLabel"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
-                                </div>
-                                <div class="modal-body">
+                      <div class="modal fade" id="testModal<?= $index1 ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="myModalLabel"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
+                            </div>
+                            <div class="modal-body">
+                              <?php foreach ($hotel as $index2 => $room): ?>
+                                <?php if ($index2 > 0): ?>
+                                  <?php $room = $room['roomInfo'] ?>
                                   <label class="mb-3"><?= $from ?>から<?= $to ?>の利用</label>
                                   <div class="card w-auto">
                                     <img src="<?= $hotel[0]['hotelBasicInfo']['roomImageUrl'] ?>" class="card-img-top">
@@ -204,15 +204,15 @@
                                       <button type="submit" class="btn btn-primary">予約する</button>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                </div>
-                              </div>
+                                <?php endif ?>
+                              <?php endforeach ?>
                             </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                           </div>
-                        <?php endif ?>
-                      <?php endforeach ?>
+                        </div>
+                      </div>
+                    </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
