@@ -85,8 +85,7 @@
       curl_close($ch1);
       $result2 = json_decode($jsons, true);
 
-
-      $hotels = $result2['hotels'];
+      if (empty($result2['error'])) $hotels = $result2['hotels'];
 
 
     ?>
@@ -150,68 +149,72 @@
             <h5 class="mt-5">おすすめの周辺のホテル・旅館はこちら</h5>
             <div id="carouselExampleControls" class="carousel slide mb-5" data-ride="carousel">
               <div class="carousel-inner">
-                <?php foreach($hotels as $index1 => $hotel): ?>
-                  <?php $hotel = $hotel['hotel'] ?>
-                  <?php if (!empty($hotel[0]['hotelBasicInfo']['hotelName'])): ?>
-                    <?php if ($index1 == 0): ?>
-                      <div class="carousel-item zoomIn filter active">
-                    <?php else: ?>
-                      <div class="carousel-item zoomIn filter">
-                    <?php endif ?>
-                      <a class="card border-0 text-reset shadow-sm" href="<?= $hotel[0]['hotelBasicInfo']["hotelInformationUrl"] ?>" target="_blank" rel="noopener noreferrer">
-                        <div class="zoomIn filter">
-                          <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%; height: 270px; object-fit: cover;">
-                        </div>
-                        <div class="carousel-caption d-none d-md-block">
-                          <h5><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h5>
-                          <p>大人１人 <?= $hotel[0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
-                        </div>
-                      </a>
-                      <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal<?= $index1 ?>">このホテルを予約</button>
+                <?php if (empty($result2['error'])): ?>
+                  <?php foreach($hotels as $index1 => $hotel): ?>
+                    <?php $hotel = $hotel['hotel'] ?>
+                    <?php if (!empty($hotel[0]['hotelBasicInfo']['hotelName'])): ?>
+                      <?php if ($index1 == 0): ?>
+                        <div class="carousel-item zoomIn filter active">
+                      <?php else: ?>
+                        <div class="carousel-item zoomIn filter">
+                      <?php endif ?>
+                        <a class="card border-0 text-reset shadow-sm" href="<?= $hotel[0]['hotelBasicInfo']["hotelInformationUrl"] ?>" target="_blank" rel="noopener noreferrer">
+                          <div class="zoomIn filter">
+                            <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" alt="..." style="width: 100%; height: 270px; object-fit: cover;">
+                          </div>
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h5>
+                            <p>大人１人 <?= $hotel[0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
+                          </div>
+                        </a>
+                        <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal<?= $index1 ?>">このホテルを予約</button>
 
-                      <!-- ボタン・リンククリック後に表示される画面の内容 -->
-                      <div class="modal fade" id="testModal<?= $index1 ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title" id="myModalLabel"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
-                            </div>
-                            <div class="modal-body">
-                              <?php foreach ($hotel as $index2 => $room): ?>
-                                <?php if ($index2 > 0): ?>
-                                  <?php $room = $room['roomInfo'] ?>
-                                  <label class="mb-3"><?= $from ?>から<?= $to ?>の利用</label>
-                                  <div class="card w-auto">
-                                    <img src="<?= $hotel[0]['hotelBasicInfo']['roomImageUrl'] ?>" class="card-img-top">
-                                    <div class="card-body">
-                                      <h5 class="card-title"><?= $room[0]['roomBasicInfo']['roomName'] ?></h5>
-                                      <p class="card-text"><?= $room[0]['roomBasicInfo']['planName'] ?></p>
-                                      <p class="card-text"><?= $room[1]['dailyCharge']['rakutenCharge'] ?>円</p>
-                                      <input type="hidden" name="plan" value="<?= $plan_id ?>">
-                                      <input type="hidden" name="url" value="<?= $reserveUrl ?>">
-                                      <button type="submit" class="btn btn-primary">予約する</button>
+                        <!-- ボタン・リンククリック後に表示される画面の内容 -->
+                        <div class="modal fade" id="testModal<?= $index1 ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
+                              </div>
+                              <div class="modal-body">
+                                <?php foreach ($hotel as $index2 => $room): ?>
+                                  <?php if ($index2 > 0): ?>
+                                    <?php $room = $room['roomInfo'] ?>
+                                    <label class="mb-3"><?= $from ?>から<?= $to ?>の利用</label>
+                                    <div class="card w-auto">
+                                      <img src="<?= $hotel[0]['hotelBasicInfo']['roomImageUrl'] ?>" class="card-img-top">
+                                      <div class="card-body">
+                                        <h5 class="card-title"><?= $room[0]['roomBasicInfo']['roomName'] ?></h5>
+                                        <p class="card-text"><?= $room[0]['roomBasicInfo']['planName'] ?></p>
+                                        <p class="card-text"><?= $room[1]['dailyCharge']['rakutenCharge'] ?>円</p>
+                                        <input type="hidden" name="plan" value="<?= $plan_id ?>">
+                                        <input type="hidden" name="url" value="<?= $reserveUrl ?>">
+                                        <button type="submit" class="btn btn-primary">予約する</button>
+                                      </div>
                                     </div>
-                                  </div>
-                                <?php endif ?>
-                              <?php endforeach ?>
+                                  <?php endif ?>
+                                <?php endforeach ?>
+                              </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                             </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  <?php endif ?>
-                <?php endforeach ?>
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    <?php endif ?>
+                  <?php endforeach ?>
+                <?php else: ?>
+                  <p class="alert alert-danger mt-2">空いている宿がありませんでした。条件を変えて再検索してください。</p>
+                <?php endif ?>
               </div>
             </div>
 
