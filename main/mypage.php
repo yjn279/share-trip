@@ -16,7 +16,7 @@
       $plans_inst = new Plans();
 
       $user = $_SESSION['user'];
-      
+
     ?>
 
     <main class="py-3">
@@ -24,6 +24,27 @@
 
 
         <?php $plans = $plans_inst -> get_by_user($user) ?>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">投稿したプラン数</th>
+              <th scope="col">ブックマークされたプラン数</th>
+              <th scope="col">予約された件数</th>
+              <th scope="col">収益</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><?= $budget?>円</th>
+              <td><?= $hotel?>円</td>
+              <td><?= $food?>円</td>
+              <td><?= $tour?>円</td>
+              
+            </tr>
+          </tbody>
+        </table>
 
 
         <?php foreach ($plans as $plan): ?>

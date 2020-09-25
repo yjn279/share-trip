@@ -173,6 +173,13 @@
       $planName = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['planName'];
       // var_dump($planName);
       $roomName = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['roomName'];
+      $reserveUrl = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['reserveUrl'];
+      $rakutenCharge = $result2['hotels'][0]['hotel'][1]['roomInfo'][1]['dailyCharge']['rakutenCharge'];
+
+      foreach($result2['hotels'][0]['hotel'][0]['hotelBasicInfo'] as $key => $eachUrl)
+
+
+
 
 
         ?>
@@ -271,37 +278,25 @@
 
                                       <br>
                                       <br>
+
                                       <div class="card w-auto">
+
                                       <!-- <div class="card w-auto" style="width: 18rem;"> -->
                                           <img src="<?= $roomImageUrl ?>" class="card-img-top">
                                           <div class="card-body">
                                             <h5 class="card-title"><?= $roomName ?></h5>
                                             <p class="card-text"><?= $planName?></p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            <p class="card-text"><?= $rakutenCharge?>円</p>
+                                            <a href="<?= $reserveUrl ?>" class="btn btn-primary">予約する</a>
                                           </div>
-                                        </div>
-                                      <label>帰宅日</label>
-                                      <input id='arrival' type="date" name="to" value="<?php echo date('Y-m-d');  ?>" required>
-                                      <br>
-                                      <br>
 
-                                      <label>予算総額</label>
-                                      <input id='allbudget' type="number" name="budget" onchange="myfunc(this.value)" required>円<br>
-                                      <!-- <p id="abiko">abiko</p><br> -->
-                                      <label>ホテル予算</label>
-                                      <input id='hotelbudget' type="number" name="hotel" required>円<br>
-                                      <label>飲食予算</label>
-                                      <input id='drinkbudget' type="number" name="food" required>円<br>
-                                      <label>観光予算</label>
-                                      <input id='tourbudget' type="number" name="tour" required>円<br>
-                                      <label>その他予算</label>
-                                      <input id='otherbudget' type="number" name="others" required>円<br>
+                                        </div>
 
 
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                      <button type="submit" class="btn btn-info" >登録</button>
+
                                     </form>
                                   </div>
                                 </div>
@@ -327,6 +322,45 @@
                                           <p>大人１人 <?= $resulteach['hotel'][0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
                                         </div>
                                       </a>
+                                      <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal">このホテルを予約</button>
+
+                                      <!-- ボタン・リンククリック後に表示される画面の内容 -->
+                                      <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel"><?= $hotelName ?></h4>
+                                          </div>
+                                          <div class="modal-body">
+
+                                              <label><?= $from?>から<?=$to?>の利用</label>
+
+                                              <br>
+                                              <br>
+
+                                              <div class="card w-auto">
+
+                                              <!-- <div class="card w-auto" style="width: 18rem;"> -->
+                                                  <img src="<?= $roomImageUrl ?>" class="card-img-top">
+                                                  <div class="card-body">
+                                                    <h5 class="card-title"><?= $roomName ?></h5>
+                                                    <p class="card-text"><?= $planName?></p>
+                                                    <p class="card-text"><?= $rakutenCharge?>円</p>
+                                                    <a href="<?= $reserveUrl ?>" class="btn btn-primary">予約する</a>
+                                                  </div>
+
+                                                </div>
+
+
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+
+                                            </form>
+                                          </div>
+                                        </div>
+                                        </div>
+                                      </div>
                                     </div>
                                     <?php
                                   } else {
