@@ -64,7 +64,7 @@
 
 
   // リダイレクト
-  // redirect("../plan.php?id=$id");
+  redirect("../plan.php?id=$id");
 
 
 ?>
