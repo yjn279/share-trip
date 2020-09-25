@@ -78,20 +78,20 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">総予算</th>
-                      <th scope="col">ホテル</th>
-                      <th scope="col">飲食</th>
-                      <th scope="col">観光</th>
-                      <th scope="col">その他</th>
+                      <th scope="col"><p class="text-center">総予算</p></th>
+                      <th scope="col"><p class="text-center">ホテル</p></th>
+                      <th scope="col"><p class="text-center">飲食</p></th>
+                      <th scope="col"><p class="text-center">観光</p></th>
+                      <th scope="col"><p class="text-center">その他</p></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row"><?= $budget?>円</th>
-                      <td><?= $hotel?>円</td>
-                      <td><?= $food?>円</td>
-                      <td><?= $tour?>円</td>
-                      <td><?= $others?>円</td>
+                      <th scope="row"><p class="text-center"><?= $budget?>円</p></th>
+                      <td><p class="text-center"><?= $hotel?>円</p></td>
+                      <td><p class="text-center"><?= $food?>円</p></td>
+                      <td><p class="text-center"><?= $tour?>円</p></td>
+                      <td><p class="text-center"><?= $others?>円</p></td>
                     </tr>
                   </tbody>
                 </table>
@@ -144,7 +144,7 @@
               <?php if(!empty($_SESSION['user'])): ?>
 
                 <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal">カレンダー登録</button>
-                
+
 
                 <!-- ボタン・リンククリック後に表示される画面の内容 -->
                 <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
