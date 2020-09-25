@@ -33,6 +33,9 @@
       $plan_id = $calendars['plan_id'];
       $from = $calendars['from_date'];
       $to = $calendars['to_date'];
+      $froms = explode("-",$from);
+      $tos = explode("-",$to);
+      $tos1 = $tos[2] + 1;
 
       $plans = $plans_inst -> get_plan($plan_id);
       $title = $plans['title'];
@@ -183,48 +186,39 @@
 
 
 
-      <main class="card bg-light border-0 p-3">
-        <div class="row no-gutters">
-
+      <main class="container">
+        <div class="row justify-content-md-center">
           <?php if(!empty($image)): ?>
-            <img class="card-img-top col-md-6" src="backend/image.php?id=<?= $plan_id ?>" alt="image">
+            <img class="col-md-7 mt-5 rounded" src="backend/image.php?id=<?= $plan_id ?>" alt="image">
           <?php endif ?>
-
-
-          <div class="col-md-6 mx-md-auto">
-            <div class="card-body">
-
-              <!-- form -->
-              <form>
-                <h5>
-                  タイトル
-                  <small>
-                    <a class="float-right text-secondary mt-1" href="https://www.google.com/calendar/event?
-                    action=TEMPLATE&text=<?= $title ?>への旅行&
-                    location=<?= $title ?>&
-                    dates=<?= $froms[0] ?><?= $froms[1] ?><?= $froms[2] ?>/<?= $tos[0] ?><?= $tos[1] ?><?= $tos1 ?>&
-                    details=<?= implode("→",$schedule)?>%20https://tb-220145.tech-base.net/mycalendar_plan.php?id=<?=$id?>%20powered%20by%20Share%20Trip">
-                      Googleカレンダーに追加
-                      <i class="far fa-calendar-plus ml-2 mr-1"></i>
-                    </a>
-                  </small>
-                </h5>
-                <div class="input-group mb-3">
-                  <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
-                  <div class="input-group-append">
-                    <span class="input-group-text">への旅行</span>
-                  </div>
+          <div class="col-md-7 mt-5">
+            <!-- form -->
+            <form>
+              <h5>
+                タイトル
+                <small>
+                  <a class="float-right text-secondary mt-1" href="https://www.google.com/calendar/event?action=TEMPLATE&text=<?= $title ?>への旅行&location=<?= $title ?>&dates=<?= $froms[0] ?><?= $froms[1] ?><?= $froms[2] ?>/<?= $tos[0] ?><?= $tos[1] ?><?= $tos1 ?>&details=<?= implode("→",$schedule)?>%20https://tb-220145.tech-base.net/mycalendar_plan.php?id=<?=$id?>%20powered%20by%20Share%20Trip">
+                    Googleカレンダーに追加
+                    <i class="far fa-calendar-plus ml-2 mr-1"></i>
+                  </a>
+                </small>
+              </h5>
+              <div class="input-group mb-3">
+                <input class="form-control bg-light" type="text" value="<?= $title ?>" readonly>
+                <div class="input-group-append">
+                  <span class="input-group-text">への旅行</span>
                 </div>
-                <div class="row mb-2">
-                  <div class="col">
-                    <input class="form-control bg-light" type="date" value="<?= $from ?>" readonly></input>
-                  </div>
-                  <p> - </p>
-                  <div class="col">
-                    <input class="form-control bg-light" type="date" value="<?= $to ?>" readonly></input>
-                  </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col">
+                  <input class="form-control bg-light" type="date" value="<?= $from ?>" readonly></input>
                 </div>
-                <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
+                <p> - </p>
+                <div class="col">
+                  <input class="form-control bg-light" type="date" value="<?= $to ?>" readonly></input>
+                </div>
+              </div>
+              <p class="small text-right mb-3">created at <?= $date ?> by <?= $name ?></p>
 
                 <table class="table">
   <thead>
@@ -436,12 +430,6 @@
                 <h5>コメント</h5>
                 <textarea class="form-control bg-light mb-5" cols="30" rows="10" readonly><?= $comment ?></textarea>
               </form>
-              <?php
-                $froms = explode("-",$from);
-                $tos = explode("-",$to);
-                $tos1 = $tos[2] + 1;
-              ?>
-
 
 <!-- 削除ボタン -->
 
@@ -468,9 +456,6 @@
                 </div>
               </div>
             </div>
-
-
-          </div>
 
 
         </div>
