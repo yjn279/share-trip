@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include __DIR__ . '/assets/stylesheets.php' ?>
+    <link rel="stylesheet" href="assets/stylesheets/mycalendar_plan.css">
     <title>Plan</title>
   </head>
   <body class="bg-light">
-    <header>
-    </header>
-
     <?php
 
 
@@ -63,75 +61,6 @@
       ?>
 
 
-<style>
-*ズームイン*/
-.zoomIn img {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    /* -webkit-transition: .3s ease-in-out; */
-
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -ms-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-}
-.zoomIn:hover img {
-  transform:scale(1.2,1.2);
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  -ms-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
-}
-
-/*黒色フィルター ＋　キャプション*/
-.filter img{
-    width:100%;
-    height:270px;
-}
-.filter a{
-    display:block;
-    position: relative;
-    width:100%;
-    min-height:270px;
-    display: flex;
-    justify-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    align-items: flex-end;
-}
-.filter .name{
-    color:#FFF;
-    position: absolute;
-    width: 100%;
-    min-height:270px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 160%;
-    font-family: bolder
-}
-.filter a:before{
-    background-color: rgba(0,0,0,0.2);
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    content: ' ';
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -ms-transition: all 1s;
-    -o-transition: all 1s;
-    transition: all 1s;
-}
-.filter a:hover:before{
-    background-color: rgba(0,0,0,0.0);
-}
-
-</style>
 
 
 
