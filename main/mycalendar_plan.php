@@ -84,18 +84,6 @@
       $jsons = curl_exec($ch1);
       curl_close($ch1);
       $result2 = json_decode($jsons, true);
-      $hotelInformationUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']["hotelInformationUrl"];
-      $hotelImageUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelImageUrl'];
-      $hotelName = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['hotelName'];
-
-      $roomImageUrl = $result2['hotels'][0]['hotel'][0]['hotelBasicInfo']['roomImageUrl'];
-
-      $planName = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['planName'];
-      // var_dump($planName);
-      $roomName = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['roomName'];
-      $reserveUrl = $result2['hotels'][0]['hotel'][1]['roomInfo'][0]['roomBasicInfo']['reserveUrl'];
-      $rakutenCharge = $result2['hotels'][0]['hotel'][1]['roomInfo'][1]['dailyCharge']['rakutenCharge'];
-
 
 
       $hotels = $result2['hotels'];
