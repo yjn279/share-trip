@@ -179,6 +179,7 @@
                           <p>大人１人 <?= $hotel[0]['hotelBasicInfo']['hotelMinCharge'] ?>円〜 </p>
                         </div>
                       </a>
+
                       <button type="button" class="btn btn-info btn-lg btn-block mt-4 mb-2" data-toggle="modal" data-target="#testModal<?= $index1 ?>">このホテルを予約</button>
 
                       <!-- ボタン・リンククリック後に表示される画面の内容 -->
@@ -194,7 +195,9 @@
                                   <?php $room = $room['roomInfo'] ?>
                                   <label class="mb-3"><?= $from ?>から<?= $to ?>の利用</label>
                                   <div class="card w-auto">
+
                                     <img src="<?= $hotel[0]['hotelBasicInfo']['roomImageUrl'] ?>" class="card-img-top">
+
                                     <div class="card-body">
                                       <h5 class="card-title"><?= $room[0]['roomBasicInfo']['roomName'] ?></h5>
                                       <p class="card-text"><?= $room[0]['roomBasicInfo']['planName'] ?></p>
