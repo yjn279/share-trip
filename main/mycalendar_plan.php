@@ -160,7 +160,7 @@
                       <?php endif ?>
                         <a class="card border-0 text-reset shadow-sm" href="<?= $hotel[0]['hotelBasicInfo']["hotelInformationUrl"] ?>" target="_blank" rel="noopener noreferrer">
                           <div class="zoomIn filter">
-                            <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" id="image-url"　style="width: 100%; height: 270px; object-fit: cover;">
+                            <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" id="image-url">
                           </div>
                           <div class="carousel-caption d-none d-md-block">
                             <h5><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h5>

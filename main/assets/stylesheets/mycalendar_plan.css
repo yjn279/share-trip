@@ -22,7 +22,7 @@
 */
 
 /*黒色フィルター ＋　キャプション*/
-
+/*
 .filter img {
     width:100%;
     height:270px;
@@ -71,7 +71,7 @@
 .filter a:hover:before{
     background-color: rgba(0,0,0,0.0);
 }
-
+*/
 
 #image-url {
   width: 100%;
