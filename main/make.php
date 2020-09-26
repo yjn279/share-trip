@@ -51,20 +51,20 @@
         <table class="table">
 <thead>
 <tr>
-<th scope="col">総予算</th>
-<th scope="col">ホテル</th>
-<th scope="col">飲食</th>
-<th scope="col">観光</th>
-<th scope="col">その他</th>
+<th scope="col"><p class="text-center">総予算</p></th>
+<th scope="col"><p class="text-center">ホテル</p></th>
+<th scope="col"><p class="text-center">飲食</p></th>
+<th scope="col"><p class="text-center">観光</p></th>
+<th scope="col"><p class="text-center">その他</p></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th scope="row"><input class="form-control mb-3" id="total" type="number" name="total" required></input>円</th>
-<td><input class="form-control mb-3" id="hotel" type="number" name="hotel" required></input>円</td>
-<td><input class="form-control mb-3" id="food" type="number" name="food" required></input>円</td>
-<td><input class="form-control mb-3" id="tour" type="number" name="tour" required></input>円</td>
-<td><input class="form-control mb-3" id="others" type="number" name="others" required></input>円</td>
+<th scope="row"><p class="text-center"><input class="form-control mb-3" id="total" type="number" name="total" required></input>円</p></th>
+<td><p class="text-center"><input class="form-control mb-3" id="hotel" type="number" name="hotel" required></input>円</p></td>
+<td><p class="text-center"><input class="form-control mb-3" id="food" type="number" name="food" required></input>円</p></td>
+<td><p class="text-center"><input class="form-control mb-3" id="tour" type="number" name="tour" required></input>円</p></td>
+<td><p class="text-center"><input class="form-control mb-3" id="others" type="number" name="others" required></input>円</p></td>
 </tr>
 
 </tbody>
