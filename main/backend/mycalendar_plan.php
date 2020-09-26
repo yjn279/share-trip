@@ -8,7 +8,7 @@
 
 
   // リダイレクト
-  redirect('timeline.php', empty($_SESSION['user'] || $_POST['plan'] || $_GET['url']));
+  redirect('timeline.php', empty($_SESSION['user'] || $_POST['plan'] || $_POST['url']));
 
 
   // データを取得

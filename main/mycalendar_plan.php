@@ -160,7 +160,7 @@
                       <?php endif ?>
                         <a class="card border-0 text-reset shadow-sm" href="<?= $hotel[0]['hotelBasicInfo']["hotelInformationUrl"] ?>" target="_blank" rel="noopener noreferrer">
                           <div class="zoomIn filter">
-                            <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" id="image-url">
+                            <img src="<?= $hotel[0]['hotelBasicInfo']['hotelImageUrl'] ?>" class="image-url">
                           </div>
                           <div class="carousel-caption d-none d-md-block">
                             <h5><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h5>
@@ -174,7 +174,7 @@
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
+                                <h4 class="modal-title" id="myModalLabel<?= $index1 ?>"><?= $hotel[0]['hotelBasicInfo']['hotelName'] ?></h4>
                               </div>
                               <div class="modal-body">
                                 <?php foreach ($hotel as $index2 => $room): ?>
@@ -188,7 +188,7 @@
                                         <p class="card-text"><?= $room[0]['roomBasicInfo']['planName'] ?></p>
                                         <p class="card-text"><?= $room[1]['dailyCharge']['rakutenCharge'] ?>円</p>
                                         <input type="hidden" name="plan" value="<?= $plan_id ?>">
-                                        <input type="hidden" name="url" value="<?= $reserveUrl ?>">
+                                        <input type="hidden" name="url" value="<?= $room[0]['roomBasicInfo']['reserveUrl'] ?>">
                                         <button type="submit" class="btn btn-primary">予約する</button>
                                       </div>
                                     </div>
