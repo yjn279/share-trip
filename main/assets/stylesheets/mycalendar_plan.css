@@ -1,8 +1,8 @@
 /* ズームイン */
+/*
 .zoomIn img {
     -webkit-transform: scale(1);
     transform: scale(1);
-    /* -webkit-transition: .3s ease-in-out; */
 
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
@@ -10,6 +10,7 @@
     -o-transition: all 1s;
     transition: all 1s;
 }
+
 .zoomIn:hover img {
   transform:scale(1.2,1.2);
   -webkit-transition: all 1s;
@@ -18,12 +19,15 @@
   -o-transition: all 1s;
   transition: all 1s;
 }
+*/
 
 /*黒色フィルター ＋　キャプション*/
-.filter img{
+
+.filter img {
     width:100%;
     height:270px;
 }
+
 .filter a{
     display:block;
     position: relative;
@@ -35,6 +39,7 @@
     align-items: center;
     align-items: flex-end;
 }
+
 .filter .name{
     color:#FFF;
     position: absolute;
@@ -47,6 +52,7 @@
     font-size: 160%;
     font-family: bolder
 }
+
 .filter a:before{
     background-color: rgba(0,0,0,0.2);
     position: absolute;
@@ -61,6 +67,14 @@
     -o-transition: all 1s;
     transition: all 1s;
 }
+
 .filter a:hover:before{
     background-color: rgba(0,0,0,0.0);
+}
+
+
+#image-url {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
 }
